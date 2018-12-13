@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute';
-import AnonRoute from './components/AnonRoute';
-import AuthProvider from './providers/AuthProvider';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
+import AnonRoute from './components/AnonRoute';
+import PrivateRoute from './components/PrivateRoute';
+
+import AuthProvider from './providers/AuthProvider';
+import NotFound from './pages/NotFound';
+import Landing from './pages/Landing';
+
 class App extends Component {
   render() {
     return (
       <AuthProvider>
         <div className="container">
-          <h1>Basic React Authentication</h1>
-          <Navbar />
           <Switch>
-              <Route exact path="/" component={Home} />
-              <AnonRoute path="/signup" component={Signup} />
-              <AnonRoute path="/login" component={Login} />
-              <PrivateRoute path="/private" component={Private} />
+            <Route exact path="/" component={Landing} />
+            <AnonRoute path="/signup" component={Signup} />
+            <AnonRoute path="/login" component={Login} />
+            <PrivateRoute path="/home" component={Home} />
+            <Route path="/profile" component={Profile} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </AuthProvider>
@@ -29,3 +32,8 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
