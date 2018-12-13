@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../lib/auth-service';
-import { withAuth } from '../providers/AuthProvider';
+import auth from '../../lib/auth-service';
+import { withAuth } from '../../providers/AuthProvider';
+
 class Login extends Component {
   state = {
     username: "",

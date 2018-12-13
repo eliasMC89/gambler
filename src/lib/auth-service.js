@@ -14,11 +14,6 @@ class Auth {
       .then(({ data }) => data);
   }
 
-  // edit(user) {
-  //   const { username, password } = user;
-
-  // }
-
   login(user) {
     const { username, password } = user;
     return this.auth.post('/auth/login', {username, password})

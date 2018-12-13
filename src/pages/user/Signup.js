@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../lib/auth-service';
-import { withAuth } from '../providers/AuthProvider';
+import auth from '../../lib/auth-service';
+import { withAuth } from '../../providers/AuthProvider';
 
 class Signup extends Component {
 
   state = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   };
 
   handleFormSubmit = (event) => {
@@ -18,8 +18,8 @@ class Signup extends Component {
     auth.signup({ username, password })
       .then( (user) => {
         this.setState({
-            username: "",
-            password: "",
+            username: '',
+            password: '',
         });
         this.props.setUser(user)
       })
