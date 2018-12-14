@@ -24,7 +24,7 @@ class App extends Component {
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute path="/cash-game/add-players" component={CashGame} />
+            <PrivateRoute path="/cash-game" component={CashGame} />
             <Route component={NotFound} />
           </Switch>
         </div>
