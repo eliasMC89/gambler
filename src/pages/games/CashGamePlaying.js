@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import cashGameService from '../../lib/cashGame-service';
 
 class CashGamePlaying extends Component {
@@ -20,7 +21,7 @@ class CashGamePlaying extends Component {
   }
 
   render() {
-    console.log(this.state)
+    const { id } = this.props.match.params;
     const { playerList, pot } = this.state;
     return (
       <div>
@@ -33,7 +34,7 @@ class CashGamePlaying extends Component {
           })}
         </ul>
         <div><p>Pot: {pot}</p></div>
-        <button>END GAME</button>
+        <Link to={`/cash-game/${id}/summary`}>END GAME</Link>
       </div>
     );
   }

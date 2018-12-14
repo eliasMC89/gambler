@@ -20,6 +20,13 @@ class CashGameService {
         return res.data
       }) 
   }
+
+  // updateStack(playerId, finalStack) {
+  //   return this.cash.put('/cash-game/add-stack', {playerId, finalStack})
+  //     .then((res)=>{
+  //       return res.data;
+  //     })
+  // }
 }
 
 const cashGameService = new CashGameService();

@@ -5,6 +5,8 @@ import PrivateRoute from '../../components/PrivateRoute';
 import Navbar from '../../components/Navbar';
 import AddPlayers from './AddPlayers';
 import CashGamePlaying from './CashGamePlaying';
+import FinalStacks from './FinalStacks';
+import CashGameSummary from './CashGameSummary';
 
 class NewGame extends Component {
 
@@ -18,6 +20,8 @@ class NewGame extends Component {
         <Switch>
           <PrivateRoute path={`${match.path}/add-players`} component={AddPlayers} />
           <PrivateRoute path={`${match.path}/:id/playing`} component={CashGamePlaying} />
+          {/* <PrivateRoute path={`${match.path}/:id/stacks`} component={FinalStacks} /> */}
+          <PrivateRoute path={`${match.path}/:id/summary`} component={CashGameSummary} />
         </Switch>
           
       </div>
