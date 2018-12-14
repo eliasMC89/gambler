@@ -16,7 +16,6 @@ class AddPlayer extends Component {
     this.setState({
       currentPlayerName: value,
     })
-    console.log(this.state.currentPlayerName)
   }
 
   handleBuyInChange = (event) => {  
@@ -46,7 +45,6 @@ class AddPlayer extends Component {
   getTotalPot = (playerList) => {
     let totalPot = 0;
     playerList.forEach((player)=>{
-      console.log(player)
       totalPot = totalPot + player.buyin;
     })
     return totalPot;
@@ -54,7 +52,6 @@ class AddPlayer extends Component {
 
   handleSubmitNewGame = (event) => {
     event.preventDefault();    
-    console.log(this.state.playerList)
     const playerList = this.state.playerList;
     const pot = this.getTotalPot(this.state.playerList);
     const isPlaying = true;
@@ -62,8 +59,7 @@ class AddPlayer extends Component {
 
     cash.create({playerList, pot, isPlaying, owner})
       .then((res)=>{
-        console.log('created');
-        this.props.history.push('/cash-game/playing')
+        this.props.history.push(`/cash-game/${res.game._id}/playing`)
       })
       .catch( error => console.log(error) )
     

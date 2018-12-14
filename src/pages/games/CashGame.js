@@ -17,7 +17,7 @@ class NewGame extends Component {
         <Navbar />
         <Switch>
           <PrivateRoute path={`${match.path}/add-players`} component={AddPlayers} />
-          <PrivateRoute path={`${match.path}/playing`} component={CashGamePlaying} />
+          <PrivateRoute path={`${match.path}/:id/playing`} component={CashGamePlaying} />
         </Switch>
           
       </div>

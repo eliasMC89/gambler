@@ -13,6 +13,13 @@ class CashGameService {
     return this.cash.post('/cash-game/create', { playerList, pot, isPlaying, owner })
       .then(({ data }) => data);
   }
+
+  getDetail(id) {
+    return this.cash.get(`/cash-game/${id}`)
+      .then((res) => {
+        return res.data
+      }) 
+  }
 }
 
 const cashGameService = new CashGameService();
