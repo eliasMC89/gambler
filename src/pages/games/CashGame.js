@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import PrivateRoute from '../../components/PrivateRoute';
 import Navbar from '../../components/Navbar';
 import AddPlayers from './AddPlayers';
 import CashGamePlaying from './CashGamePlaying';
@@ -14,10 +15,9 @@ class NewGame extends Component {
     return (
       <div>
         <Navbar />
-        <div>dhoads</div>
         <Switch>
-          <Route path={`${match.path}/add-players`} component={AddPlayers} />
-          <Route path={`${match.path}/playing`} component={CashGamePlaying} />
+          <PrivateRoute path={`${match.path}/add-players`} component={AddPlayers} />
+          <PrivateRoute path={`${match.path}/playing`} component={CashGamePlaying} />
         </Switch>
           
       </div>

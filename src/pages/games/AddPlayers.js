@@ -16,12 +16,14 @@ class AddPlayer extends Component {
     this.setState({
       currentPlayerName: value,
     })
+    console.log(this.state.currentPlayerName)
   }
 
   handleBuyInChange = (event) => {  
     const { value } = event.target;
+    const buyIn = Number(value);
     this.setState({
-      currentPlayerBuyIn: value,
+      currentPlayerBuyIn: buyIn,
     });
   }
 
@@ -44,13 +46,15 @@ class AddPlayer extends Component {
   getTotalPot = (playerList) => {
     let totalPot = 0;
     playerList.forEach((player)=>{
-      totalPot += player.buyin;
+      console.log(player)
+      totalPot = totalPot + player.buyin;
     })
     return totalPot;
   }
 
   handleSubmitNewGame = (event) => {
     event.preventDefault();    
+    console.log(this.state.playerList)
     const playerList = this.state.playerList;
     const pot = this.getTotalPot(this.state.playerList);
     const isPlaying = true;
@@ -59,7 +63,6 @@ class AddPlayer extends Component {
     cash.create({playerList, pot, isPlaying, owner})
       .then((res)=>{
         console.log('created');
-        // console.log(this.props);
         this.props.history.push('/cash-game/playing')
       })
       .catch( error => console.log(error) )
@@ -67,13 +70,13 @@ class AddPlayer extends Component {
   }
 
   render() {
-    //console.log(this.props);
     return (
       <div>
         <h1>Players: </h1>
         <form onSubmit={this.handleSubmitPlayer}>
-          <p><input type="text" name="name" value={this.state.currentPlayerName} onChange={this.handleNameChange} /></p>
-          <p><input type="number" name="buyin" value={this.state.currentPlayerBuyIn} onChange={this.handleBuyInChange} /></p>
+          <div><input type="text" name="name" value={this.state.currentPlayerName} onChange={this.handleNameChange} /></div>
+          <div><input type="number" name="buyin" value={this.state.currentPlayerBuyIn} onChange={this.handleBuyInChange} /></div>
+          
           <input type="submit" value="AddPlayer" />
         </form>
         <ul>

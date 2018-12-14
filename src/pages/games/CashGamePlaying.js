@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 class CashGamePlaying extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
-        The game is playing
+        <h1>Game playing</h1>
+
       </div>
     );
   }
