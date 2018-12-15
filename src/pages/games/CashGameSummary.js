@@ -16,7 +16,7 @@ class CashGameSummary extends Component {
     .then((cashGame)=>{
       console.log(cashGame);
       this.setState({
-        playerList: cashGame.playerList,
+        playerList: cashGame.currentPlayerList,
         pot: cashGame.pot,
       })
     })
@@ -31,7 +31,11 @@ class CashGameSummary extends Component {
         <ul>
           {playerList.map((player, index)=>{
             return (
-              <li key={`id=${index}`}>{player.name}, {player.buyin}</li>
+              <li key={`id=${index}`}>
+              <div>{player.name}, {player.buyin}</div>
+              <div>Final Stack: {player.finalStack}</div>
+              <div>Wins: {player.finalStack - player.buyin}</div>
+              </li>
             )
           })}
         </ul>

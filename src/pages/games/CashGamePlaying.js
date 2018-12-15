@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import cashGameService from '../../lib/cashGame-service';
+import cash from '../../lib/cashGame-service';
 
 class CashGamePlaying extends Component {
 
@@ -11,7 +11,7 @@ class CashGamePlaying extends Component {
 
   componentDidMount () {
     const { id } = this.props.match.params;
-    cashGameService.getDetail(id)
+    cash.getDetail(id)
       .then((cashGame)=>{
         console.log(cashGame);
         this.setState({

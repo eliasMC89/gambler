@@ -9,8 +9,8 @@ class CashGameService {
   }
 
   create(game) {
-    const { playerList, currentPlayerList, pot, isPlaying, owner } = game;
-    return this.cash.post('/cash-game/create', { playerList, currentPlayerList, pot, isPlaying, owner })
+    const { currentPlayerList, pot, isPlaying, owner } = game;
+    return this.cash.post('/cash-game/create', { currentPlayerList, pot, isPlaying, owner })
       .then(({ data }) => data);
   }
 
@@ -21,12 +21,12 @@ class CashGameService {
       }) 
   }
 
-  // updateStack(playerId, finalStack) {
-  //   return this.cash.put('/cash-game/add-stack', {playerId, finalStack})
-  //     .then((res)=>{
-  //       return res.data;
-  //     })
-  // }
+  updateStack(playerId, finalStack) {
+    return this.cash.put(`/cash-game/player-stack/${playerId}`, {finalStack})
+      .then((res)=>{
+        return res.data;
+      })
+  }
 }
 
 const cashGameService = new CashGameService();

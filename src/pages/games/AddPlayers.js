@@ -6,7 +6,6 @@ import { withAuth } from '../../providers/AuthProvider';
 class AddPlayer extends Component {
 
   state = {
-    playerList: [],
     currentPlayerList: [],
     currentPlayerName: '',
     currentPlayerBuyIn: 0,
@@ -29,17 +28,14 @@ class AddPlayer extends Component {
 
   handleSubmitPlayer = (event) => {
     event.preventDefault();
-    const newPlayerList = this.state.playerList;
     const newCurrentPlayerList = this.state.currentPlayerList;
     const newPlayer = {
       name: this.state.currentPlayerName,
       buyin: this.state.currentPlayerBuyIn,
       finalStack: 0,
     }
-    newPlayerList.push(newPlayer);
     newCurrentPlayerList.push(newPlayer);
     this.setState({
-      playerList: newPlayerList,
       currentPlayerList: newCurrentPlayerList,
       currentPlayerName: '',
       currentPlayerBuyIn: 0,
@@ -56,13 +52,12 @@ class AddPlayer extends Component {
 
   handleSubmitNewGame = (event) => {
     event.preventDefault();    
-    const currentPlayerList = this.state.playerList;
-    const playerList = currentPlayerList;
-    const pot = this.getTotalPot(this.state.playerList);
+    const currentPlayerList = this.state.currentPlayerList;
+    const pot = this.getTotalPot(this.state.currentPlayerList);
     const isPlaying = true;
     const owner = this.props.user._id;
 
-    cash.create({playerList, currentPlayerList, pot, isPlaying, owner})
+    cash.create({currentPlayerList, pot, isPlaying, owner})
       .then((res)=>{
         this.props.history.push(`/cash-game/${res.game._id}/playing`)
       })
@@ -81,7 +76,7 @@ class AddPlayer extends Component {
           <input type="submit" value="AddPlayer" />
         </form>
         <ul>
-          {this.state.playerList.map((player, index)=>{
+          {this.state.currentPlayerList.map((player, index)=>{
             return (
               <li key={`id=${index}`}>
               Player {`${index+1}`}: {player.name}, {player.buyin} $
