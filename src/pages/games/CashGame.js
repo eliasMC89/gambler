@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {  Switch } from 'react-router-dom';
 
 import PrivateRoute from '../../components/PrivateRoute';
 import Navbar from '../../components/Navbar';
@@ -8,8 +8,9 @@ import CashGamePlaying from './CashGamePlaying';
 import CashRebuy from './CashRebuy';
 // import FinalStacks from './FinalStacks';
 import CashGameSummary from './CashGameSummary';
+import FinalStack from './FinalStack';
 
-class NewGame extends Component {
+class CashGame extends Component {
 
   
 
@@ -22,7 +23,7 @@ class NewGame extends Component {
           <PrivateRoute path={`${match.path}/add-players`} component={AddPlayers} />
           <PrivateRoute path={`${match.path}/:id/playing`} component={CashGamePlaying} />
           <PrivateRoute path={`${match.path}/:id/rebuy/:playerId`} component={CashRebuy} />
-          {/* <PrivateRoute path={`${match.path}/:id/stacks`} component={FinalStacks} /> */}
+          <PrivateRoute path={`${match.path}/:id/final-stack/:playerId`} component={FinalStack} />
           <PrivateRoute path={`${match.path}/:id/summary`} component={CashGameSummary} />
         </Switch>
           
@@ -31,4 +32,4 @@ class NewGame extends Component {
   }
 }
 
-export default NewGame;
+export default CashGame;

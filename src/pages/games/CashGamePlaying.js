@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cashGameService from '../../lib/cashGame-service';
-import RebuyLink from '../../components/RebuyLink';
 
 class CashGamePlaying extends Component {
 
   state = {
-    playerList: [],
+    currentPlayerList: [],
     pot: 0,
   }
 
@@ -14,8 +13,9 @@ class CashGamePlaying extends Component {
     const { id } = this.props.match.params;
     cashGameService.getDetail(id)
       .then((cashGame)=>{
+        console.log(cashGame);
         this.setState({
-          playerList: cashGame.playerList,
+          currentPlayerList: cashGame.currentPlayerList,
           pot: cashGame.pot,
         })
       })
@@ -23,16 +23,17 @@ class CashGamePlaying extends Component {
 
   render() {
     const { id } = this.props.match.params;
-    const { playerList, pot } = this.state;
+    const { currentPlayerList, pot } = this.state;
     return (
       <div>
         <h1>Game playing</h1>
         <ul>
-          {playerList.map((player)=>{
+          {currentPlayerList.map((player)=>{
             return (
               <li key={`id=${player._id}`}>
-              <div>{player.name}, {player.buyin}</div>
-              <div><RebuyLink playerId={player._id} cashGameId={id}/></div>
+                <div>{player.name}, {player.buyin}</div>
+                <div><Link to={`/cash-game/${id}/rebuy/${player._id}`} >Rebuy</Link></div>
+                <div><Link to={`/cash-game/${id}/final-stack/${player._id}`} >Final Stack</Link></div>
               </li>
             )
           })}

@@ -9,8 +9,8 @@ class CashGameService {
   }
 
   create(game) {
-    const { playerList, pot, isPlaying, owner } = game;
-    return this.cash.post('/cash-game/create', { playerList, pot, isPlaying, owner })
+    const { playerList, currentPlayerList, pot, isPlaying, owner } = game;
+    return this.cash.post('/cash-game/create', { playerList, currentPlayerList, pot, isPlaying, owner })
       .then(({ data }) => data);
   }
 
