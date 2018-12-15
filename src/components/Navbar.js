@@ -20,7 +20,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navbar">
         { this.props.isLogged ? this.renderIsLoggedIn() : this.renderIsNotLoggedIn() }
       </div>
     )

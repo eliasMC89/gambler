@@ -12,7 +12,7 @@ class MyInfo extends Component {
         <div>
           <ul>
             <li>username: {user.username}</li>
-            <li>games played: {user.gamesPlayed}</li>
+            {/* <li>games played: {user.gamesPlayed}</li> */}
             {/* <li>total played: {user.totalPlayed}</li>
             <li>total won: {user.totalWon}</li>
             <li>total lost: {user.totalLost}</li>
