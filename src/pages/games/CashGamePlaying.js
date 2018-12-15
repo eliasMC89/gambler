@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cashGameService from '../../lib/cashGame-service';
+import RebuyLink from '../../components/RebuyLink';
 
 class CashGamePlaying extends Component {
 
@@ -27,9 +28,12 @@ class CashGamePlaying extends Component {
       <div>
         <h1>Game playing</h1>
         <ul>
-          {playerList.map((player, index)=>{
+          {playerList.map((player)=>{
             return (
-              <li key={`id=${index}`}>{player.name}, {player.buyin}</li>
+              <li key={`id=${player._id}`}>
+              <div>{player.name}, {player.buyin}</div>
+              <div><RebuyLink playerId={player._id} cashGameId={id}/></div>
+              </li>
             )
           })}
         </ul>
