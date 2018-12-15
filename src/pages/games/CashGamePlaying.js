@@ -13,12 +13,16 @@ class CashGamePlaying extends Component {
     const { id } = this.props.match.params;
     cash.getDetail(id)
       .then((cashGame)=>{
-        console.log(cashGame);
         this.setState({
           currentPlayerList: cashGame.currentPlayerList,
           pot: cashGame.pot,
         })
       })
+  }
+
+  handleEndGame = () => {
+    const { id } = this.props.match.params;
+    cash.endGame(id);
   }
 
   render() {
@@ -39,7 +43,7 @@ class CashGamePlaying extends Component {
           })}
         </ul>
         <div><p>Pot: {pot}</p></div>
-        <Link to={`/cash-game/${id}/summary`}>END GAME</Link>
+        <Link to={`/cash-game/${id}/summary`} onClick={this.handleEndGame} >END GAME</Link>
       </div>
     );
   }

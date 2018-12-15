@@ -14,6 +14,13 @@ class CashGameService {
       .then(({ data }) => data);
   }
 
+  getMyGames() {
+    return this.cash.get('/cash-game/my-games')
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
   getDetail(id) {
     return this.cash.get(`/cash-game/${id}`)
       .then((res) => {
@@ -28,8 +35,15 @@ class CashGameService {
       })
   }
 
-  updateRebuy(playerId, rebuy) {
-    return this.cash.put(`/cash-game/player-rebuy/${playerId}`, {rebuy})
+  updateRebuy(id, playerId, rebuy) {
+    return this.cash.put(`/cash-game/${id}/player-rebuy/${playerId}`, {rebuy})
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
+  endGame(id) {
+    return this.cash.put(`/cash-game/${id}/end-game`)
       .then((res)=>{
         return res.data;
       })

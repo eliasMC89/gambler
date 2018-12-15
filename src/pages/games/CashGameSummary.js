@@ -7,7 +7,9 @@ class CashGameSummary extends Component {
   state = {
     playerList: [],
     pot: 0,
-    duration: 'some time',
+    startDate: '',
+    endDate: '',
+    duration: 'some',
   }
 
   componentDidMount () {
@@ -15,11 +17,29 @@ class CashGameSummary extends Component {
   cash.getDetail(id)
     .then((cashGame)=>{
       console.log(cashGame);
+      const { currentPlayerList, pot, startDate, endDate } = cashGame;
+      const duration = Date.parse(endDate) - Date.parse(startDate);
+
       this.setState({
-        playerList: cashGame.currentPlayerList,
-        pot: cashGame.pot,
+        playerList: currentPlayerList,
+        pot,
+        startDate,
+        duration
       })
     })
+  }
+
+  msToTime = (duration) => {
+      // let milliseconds = parseInt((duration % 1000) / 100)
+      let seconds = parseInt((duration / 1000) % 60),
+      minutes = parseInt((duration / (1000 * 60)) % 60),
+      hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+  
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+  
+    return hours + ":" + minutes + ":" + seconds;
   }
 
   render() {
@@ -39,8 +59,8 @@ class CashGameSummary extends Component {
             )
           })}
         </ul>
-        <p>Duration: {duration}</p>
-        <Link to="/home">Close Game</Link>
+        <p>Duration: {this.msToTime(duration)}</p>
+        <Link to="/home" >Close Game</Link>
       </div>
     );
   }

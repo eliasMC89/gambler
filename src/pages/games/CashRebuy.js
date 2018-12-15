@@ -22,7 +22,7 @@ class CashRebuy extends Component {
     const finalStack = this.state.rebuy;
     const { id, playerId } = this.props.match.params;
 
-    cash.updateRebuy(playerId, finalStack)
+    cash.updateRebuy(id, playerId, finalStack)
       .then(()=>{
         this.props.history.push(`/cash-game/${id}/playing`);
       })
