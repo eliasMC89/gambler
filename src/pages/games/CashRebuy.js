@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 
 
-
 // edit player in cash-game: add rebuy
 class CashRebuy extends Component {
   state = {
@@ -31,7 +30,6 @@ class CashRebuy extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <h1>Final Stack for player</h1>

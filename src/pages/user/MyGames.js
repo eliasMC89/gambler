@@ -20,7 +20,6 @@ class MyGames extends Component {
   }
 
   render() {
-    console.log(this.state.myGames)
     const { myGames } = this.state;
     return (
       <div>
@@ -29,7 +28,7 @@ class MyGames extends Component {
           {myGames.map((game)=>{
             return(
               <li key={`${game._id}`}>
-                <CashGameCard game={game} />
+                <Link to={`/cash-game/${game._id}/summary`}><CashGameCard game={game} /></Link>
               </li>
             )
           })}

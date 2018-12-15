@@ -29,6 +29,15 @@ class CashGameSummary extends Component {
     })
   }
 
+  handleDeleteGame = () => {
+    const { id } = this.props.match.params;
+    
+    cash.deleteGame(id)
+      .then(()=>{
+        this.props.history.push('/profile/my-games')
+      })
+  }
+
   msToTime = (duration) => {
       // let milliseconds = parseInt((duration % 1000) / 100)
       let seconds = parseInt((duration / 1000) % 60),
@@ -60,7 +69,8 @@ class CashGameSummary extends Component {
           })}
         </ul>
         <p>Duration: {this.msToTime(duration)}</p>
-        <Link to="/home" >Close Game</Link>
+        <button onClick={this.handleDeleteGame} >Delete Game</button>
+        <Link to="/home" >Back Home</Link>
       </div>
     );
   }

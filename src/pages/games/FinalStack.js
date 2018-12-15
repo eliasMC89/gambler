@@ -31,7 +31,6 @@ class FinalStack extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <h1>Final Stack for player</h1>

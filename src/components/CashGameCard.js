@@ -23,17 +23,26 @@ class CashGameCard extends Component {
     })
   }
 
-  msToTime = (duration) => {
+  msToTime = (durationInMs) => {
     // let milliseconds = parseInt((duration % 1000) / 100)
-    let seconds = parseInt((duration / 1000) % 60),
-    minutes = parseInt((duration / (1000 * 60)) % 60),
-    hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+    let seconds = parseInt((durationInMs / 1000) % 60),
+    minutes = parseInt((durationInMs / (1000 * 60)) % 60),
+    hours = parseInt((durationInMs / (1000 * 60 * 60)) % 24);
 
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
     return hours + ":" + minutes + ":" + seconds;
+  }
+
+  toStringDate = (date) => {
+    
+  }
+
+  msToDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toLocaleDateString();
   }
 
   render() {
@@ -43,7 +52,7 @@ class CashGameCard extends Component {
         <h3>
           Game:
         </h3>
-        <p>Date: {game.startDate}</p>
+        <p>Date: {this.msToDate(Date.parse(game.startDate))}</p>
         <p>Duration: {this.msToTime(this.state.duration)}</p>
         <p>Players: {game.currentPlayerList.length}</p>
         <p>Pot: {game.pot}</p>

@@ -48,6 +48,13 @@ class CashGameService {
         return res.data;
       })
   }
+
+  deleteGame(id) {
+    return this.cash.delete(`/cash-game/${id}`)
+      .then((res)=>{
+        return res.data;
+      })
+  }
 }
 
 const cashGameService = new CashGameService();
