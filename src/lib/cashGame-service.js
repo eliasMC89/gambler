@@ -27,6 +27,13 @@ class CashGameService {
         return res.data;
       })
   }
+
+  updateRebuy(playerId, rebuy) {
+    return this.cash.put(`/cash-game/player-rebuy/${playerId}`, {rebuy})
+      .then((res)=>{
+        return res.data;
+      })
+  }
 }
 
 const cashGameService = new CashGameService();

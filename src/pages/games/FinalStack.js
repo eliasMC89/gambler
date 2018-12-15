@@ -4,12 +4,7 @@ import cash from '../../lib/cashGame-service';
 class FinalStack extends Component {
 
   state = {
-    finalStack: 777,
-  }
-
-  componentDidMount () {
-    console.log(this.props);
-    console.log(this.state)
+    finalStack: 0,
   }
 
   handleInputChange = (event) => {
