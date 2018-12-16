@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import cash from '../../lib/cashGame-service';
 import CashGameCard from '../../components/CashGameCard';
+import Header from '../../components/Header';
 
 class MyGames extends Component {
 
@@ -22,18 +23,21 @@ class MyGames extends Component {
   render() {
     const { myGames } = this.state;
     return (
-      <div>
-        <h1>This are my games:</h1>
-        <ul>
+      <div className="container">
+        <Header title="My games:"/>
+        <ul className="game-list">
           {myGames.map((game)=>{
             return(
               <li key={`${game._id}`}>
-                <Link to={`/cash-game/${game._id}/summary`}><CashGameCard game={game} /></Link>
+                <Link to={`/cash-game/${game._id}/summary`} className="game-link"><CashGameCard game={game} /></Link>
               </li>
             )
           })}
         </ul>
-        <Link to="/profile/my-info">Back to profile</Link>
+        <div className="backprofile-box">
+          <Link to="/profile/my-info" className="backhome-link">Back to profile</Link>
+        </div>
+        
       </div>
     );
   }

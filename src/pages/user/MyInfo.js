@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 class MyInfo extends Component {
   render() {
     const { user } = this.props;
+    console.log(user);
     return (
       <div className="container">  
         <div className="logout-btn-box">

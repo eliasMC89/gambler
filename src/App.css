@@ -440,4 +440,50 @@ p {
   font-weight: bold;
 }
 
+/* --- my games --- */
+
+.game-list {
+  padding: 5px;
+  list-style: none;
+}
+
+.game-card-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px auto;
+  color: black;
+}
+
+.game-link {
+  text-decoration: none;
+}
+
+.first-line-game-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.first-line-game-info p {
+  font-weight: bold;
+}
+
+.second-line-game-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.pot-info {
+  font-size: 20px;
+}
+
+.backprofile-box {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+
 
