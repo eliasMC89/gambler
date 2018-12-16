@@ -37,12 +37,6 @@ p {
 
 /* ---- layout ---- */
 
-.navbar {
-  height: 50px;
-  /* color: red;
-  border: 1px solid black; */
-}
-
 .container {
   margin: 0 20px;
 }
@@ -59,6 +53,29 @@ p {
   }
 }
 
+/* --- navbar --- */
+
+.navbar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.profile-link {
+  padding-right: 15px;
+  padding-top: 10px;
+}
+
+.home-link {
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+
 /* ---- components ---- */
 
 .button {
@@ -68,7 +85,7 @@ p {
   border: 1px solid #fff
 }
 
-/* ---- section ---- */
+/* ------- PAGES ------- */
 
 /* --- landing --- */
 
@@ -87,10 +104,6 @@ p {
   text-align: right;
   padding-right: 15px;
   padding-top: 10px;
-}
-
-.li-su-navlink {
-  text-decoration: none;
 }
 
 /* --- login & signup --- */
@@ -152,3 +165,21 @@ p {
   padding-top: 5px;
   padding-bottom: 20px;
 }
+
+/* --- home --- */
+
+.newgame-btn {
+  text-align: center;
+  font-size: 40px;
+  margin: 200px auto 0 auto;
+}
+
+.newgame-link {
+  padding: 30px;
+  background-color: red;
+  text-decoration: none;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
+}
+

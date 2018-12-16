@@ -10,7 +10,10 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <Link to="/cash-game/add-players">NEW GAME</Link>
+        <div className="newgame-btn">
+          <Link to="/cash-game/add-players" className="newgame-link">NEW GAME</Link>
+        </div>
+        
       </div>
     )
   }

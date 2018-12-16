@@ -5,24 +5,30 @@ import { withAuth } from '../providers/AuthProvider';
 class Navbar extends Component {
 
   renderIsLoggedIn = () => {
-    return <div>
-      <p>Hi, {this.props.user.username}</p>
-      <div><Link to="/profile/my-info" >Profile</Link></div>
-      <div><Link to="/home">Home</Link></div>
+    return (
+    <div className="navbar">
+      <div className="home-link">
+        <Link to="/home" className="nav-link">Home</Link>
+      </div>
+      <div className="profile-link">
+        {/* <p>Hi, <Link to="/profile/my-info" ></Link></p> */}
+        <Link to="/profile/my-info" className="nav-link">{this.props.user.username}</Link>
+      </div>
     </div>
+    )
   }
 
   renderIsNotLoggedIn = () => {
     return (
       <div className="landing-navbar">
-        <Link to='/login' className="li-su-navlink">Login</Link> or <Link to='/signup' className="li-su-navlink">Signup</Link>
+        <Link to='/login' className="nav-link">Login</Link> or <Link to='/signup' className="nav-link">Signup</Link>
       </div>
     )
   }
 
   render() {
     return (
-      <div className="navbar">
+      <div>
         { this.props.isLogged ? this.renderIsLoggedIn() : this.renderIsNotLoggedIn() }
       </div>
     )

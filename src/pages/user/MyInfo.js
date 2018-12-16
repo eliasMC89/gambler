@@ -7,7 +7,7 @@ class MyInfo extends Component {
     const { user } = this.props;
     return (
       <div>
-        <Link to="/"><p onClick={this.props.logout}>Logout</p></Link>
+        <Link to="/" onClick={this.props.logout}>Logout</Link>
         <p>This is my profile</p>
         <div>
           <ul>
