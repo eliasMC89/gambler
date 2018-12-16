@@ -37,7 +37,14 @@ p {
 
 /* ---- layout ---- */
 
+.navbar {
+  height: 50px;
+  /* color: red;
+  border: 1px solid black; */
+}
+
 .container {
+  margin: 0 20px;
 }
 
 .section {
@@ -63,7 +70,85 @@ p {
 
 /* ---- section ---- */
 
-.navbar {
-  color: red;
-  border: 1px solid black;
+/* --- landing --- */
+
+.main-title {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 60px;
+}
+
+.landing-text {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.landing-navbar {
+  text-align: right;
+  padding-right: 15px;
+  padding-top: 10px;
+}
+
+.li-su-navlink {
+  text-decoration: none;
+}
+
+/* --- login & signup --- */
+
+.li-su-input {
+  border-bottom: solid;
+  border-top: white;
+  border-right: white;
+  border-left: white;
+  height: 30px;
+}
+
+.li-su-input-container {
+  margin-top: 15px;
+}
+
+.li-su-container {
+  margin-top: 120px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 5px rgba(168,15,71,1);
+}
+
+.li-su-title {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.username-container {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.password-container {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.li-su-btn-container {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.li-su-btn {
+  height: 35px;
+  width: 80px;
+  background-color: red;
+  border-radius: 10px;
+  font-size: 15px;
+  color: white;
+}
+
+.to-su-li {
+  text-align: center;
+}
+
+.li-su-link-container {
+  padding-top: 5px;
+  padding-bottom: 20px;
 }

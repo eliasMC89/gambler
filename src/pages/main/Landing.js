@@ -7,8 +7,12 @@ class Landing extends Component {
     return (
       <div>
         <Navbar />
-        <h1>Gambler</h1> 
-        <p>Organize your games</p>
+        <div className="container">
+          <h1 className="main-title">Gambler</h1> 
+        </div>
+        <div className="container landing-text">
+          <p className="main-text">Keep track of your games</p>
+        </div>
       </div>
     );
   }

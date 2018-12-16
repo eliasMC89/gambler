@@ -13,9 +13,11 @@ class Navbar extends Component {
   }
 
   renderIsNotLoggedIn = () => {
-    return <div>
-      <Link to='/login'>Login</Link> || <Link to='/signup'>Signup</Link>
-    </div>
+    return (
+      <div className="landing-navbar">
+        <Link to='/login' className="li-su-navlink">Login</Link> or <Link to='/signup' className="li-su-navlink">Signup</Link>
+      </div>
+    )
   }
 
   render() {

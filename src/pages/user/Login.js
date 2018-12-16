@@ -28,18 +28,37 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
-        <h1>Log In</h1>
+      <div className="container li-su-container">
+        <h1 className="li-su-title">Log In</h1>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={username} onChange={this.handleChange}/>
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
-          <input type="submit" value="Login" />
+          <div className="username-container">
+            <div>
+              <label>Username:</label>
+            </div>
+            <div className="li-su-input-container">
+              <input type="text" name="username" value={username} onChange={this.handleChange} className="li-su-input"/>
+            </div>
+          </div>
+          <div className="password-container">
+            <div>
+              <label>Password:</label>
+            </div>
+            <div className="li-su-input-container">
+              <input type="password" name="password" value={password} onChange={this.handleChange} className="li-su-input"/>
+            </div>
+          </div>
+          <div className="li-su-btn-container">
+            <input type="submit" value="Login" className="li-su-btn"/>
+          </div>
+          
         </form>
-        <div>
-          <p>Not a member?
-          <Link to={"/signup"} >Sign Up</Link></p>
+        <div className="to-su-li">
+          <div>
+            <p>Not a member?</p>
+          </div>
+          <div className="li-su-link-container">
+            <Link to={"/signup"} className="li-su-link">Sign Up</Link>
+          </div>
         </div>
       </div>
 
