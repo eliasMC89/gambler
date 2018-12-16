@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato|Averia+Serif+Libre');
 
 /* ---- reset ---- */
 
@@ -21,6 +21,7 @@ body {
   color: #111;
   font-family: 'Lato';
   line-height: 147%;
+  background-color: #FDFFFF;
 }
 
 h1 {}
@@ -63,6 +64,11 @@ p {
 
 .nav-link {
   text-decoration: none;
+  color: #8C0000;
+}
+
+.nav-or {
+  color: black;
 }
 
 .profile-link {
@@ -73,6 +79,10 @@ p {
 .home-link {
   padding-left: 15px;
   padding-top: 10px;
+}
+
+.navbar-logo {
+  width: 30px;
 }
 
 
@@ -98,9 +108,20 @@ p {
 /* --- landing --- */
 
 .main-title {
+  display: flex;
   text-align: center;
-  margin-top: 200px;
-  font-size: 60px;
+}
+
+.main-title h1 {
+  font-size: 55px;
+  font-family: 'Averia Serif Libre';
+  margin: 200px auto 0px;
+  color: #8C0000;
+}
+
+.main-title img {
+  height: 40px;
+  padding: 0px 2px;
 }
 
 .landing-text {
@@ -112,6 +133,7 @@ p {
   text-align: right;
   padding-right: 15px;
   padding-top: 10px;
+  color: #8C0000;
 }
 
 /* --- login & signup --- */
@@ -122,17 +144,20 @@ p {
   border-right: white;
   border-left: white;
   height: 30px;
+  padding: 10px;
 }
 
 .li-su-input-container {
   margin-top: 15px;
+
 }
 
 .li-su-container {
   margin-top: 120px;
   border: 2px solid black;
   border-radius: 10px;
-  box-shadow: 0px 0px 20px 5px rgba(168,15,71,1);
+  /* box-shadow: 0px 0px 20px 5px rgba(168,15,71,1); */
+  box-shadow: 0px 0px 5px 1px #8C0000;
 }
 
 .li-su-title {
@@ -159,7 +184,7 @@ p {
 .li-su-btn {
   height: 35px;
   width: 80px;
-  background-color: red;
+  background-color: #8C0000;
   border-radius: 10px;
   font-size: 15px;
   color: white;
@@ -172,6 +197,10 @@ p {
 .li-su-link-container {
   padding-top: 5px;
   padding-bottom: 20px;
+}
+
+.li-su-link {
+  color: #8C0000;
 }
 
 /* --- home --- */

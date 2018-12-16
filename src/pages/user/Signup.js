@@ -54,7 +54,7 @@ class Signup extends Component {
             </div>
           </div>
           <div className="li-su-btn-container">
-            <input type="submit" value="Login" className="li-su-btn"/>
+            <input type="submit" value="SignUp" className="li-su-btn"/>
           </div>
           
         </form>
