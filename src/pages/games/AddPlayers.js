@@ -3,7 +3,6 @@ import cash from '../../lib/cashGame-service';
 import { withAuth } from '../../providers/AuthProvider';
 
 import Header from '../../components/Header';
-import PlayerList from '../../components/PlayerList';
 
 
 class AddPlayer extends Component {
@@ -87,7 +86,15 @@ class AddPlayer extends Component {
             <input type="submit" value="+" className="add-player-btn"/>
           </div>
         </form>
-        <PlayerList playerList={currentPlayerList} />
+        <ul className="player-list">
+          {currentPlayerList.map((player, index)=>{
+            return (
+              <li key={`id=${index}`} className="add-player-card">
+                {player.name}, {player.buyin} $
+              </li>
+            )
+          })}
+        </ul>
         <div className="start-btn-box">
           <button onClick={this.handleSubmitNewGame} className="start-btn">START</button>
         </div>
