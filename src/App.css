@@ -85,6 +85,10 @@ p {
   border: 1px solid #fff
 }
 
+.underline {
+
+}
+
 /* ------- PAGES ------- */
 
 /* --- landing --- */
@@ -181,5 +185,82 @@ p {
   border-radius: 10px;
   color: white;
   box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
+}
+
+/* --- add players --- */
+
+.add-players-title {
+  margin-top: 40px;
+}
+
+.add-player-form {
+  display: flex;
+  margin-top: 28px;
+}
+
+.add-name-box {
+  width: 175px;
+}
+
+.add-name-input {
+  border: 1px solid;
+  height: 30px;
+  margin-right: 15px;
+  border-radius: 5px;
+  padding: 8px;
+  margin-top: 5px;
+
+}
+
+.add-buyin-box {
+  width: 70px;
+}
+
+.add-buyin-input {
+  border: 1px solid;
+  height: 30px;
+  border-radius: 5px;
+  width: 50px;
+  margin-top: 5px;
+  padding: 8px;
+}
+
+.add-player-btn {
+  border: 1px solid black;
+  margin-top: 28px;
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  font-size: 25px;
+  background-color: red;
+  color: white;
+}
+
+.start-btn {
+  border: 1px solid black;
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
+  background-color: red;
+  color: white;
+}
+
+.start-btn-box {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.add-player-card {
+  border: 1px solid black;
+  list-style: none;
+  display: inline-block;  
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 10px;
+}
+
+.add-player-list {
+  padding: 0;
 }
 

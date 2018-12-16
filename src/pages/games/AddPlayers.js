@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 import { withAuth } from '../../providers/AuthProvider';
 
+import Header from '../../components/Header';
+import PlayerList from '../../components/PlayerList';
+
 
 class AddPlayer extends Component {
 
@@ -9,6 +12,7 @@ class AddPlayer extends Component {
     currentPlayerList: [],
     currentPlayerName: '',
     currentPlayerBuyIn: 0,
+    title: 'Players',
   }
 
   handleNameChange = (event) => {  
@@ -66,25 +70,28 @@ class AddPlayer extends Component {
   }
 
   render() {
+    const { currentPlayerName, currentPlayerBuyIn, currentPlayerList } = this.state;
     return (
-      <div>
-        <h1>Players: </h1>
-        <form onSubmit={this.handleSubmitPlayer}>
-          <div><input type="text" name="name" value={this.state.currentPlayerName} onChange={this.handleNameChange} /></div>
-          <div><input type="number" name="buyin" value={this.state.currentPlayerBuyIn} onChange={this.handleBuyInChange} /></div>
-          
-          <input type="submit" value="AddPlayer" />
+      <div className="container">
+        <Header title={this.state.title} />
+        <form onSubmit={this.handleSubmitPlayer} className="add-player-form">
+          <div className="add-name-box">
+            <label>Name: </label>
+            <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
+          </div>
+          <div className="add-buyin-box">
+            <label>Buy in: </label>
+            <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
+          </div>
+          <div className="add-player-btn-box">
+            <input type="submit" value="+" className="add-player-btn"/>
+          </div>
         </form>
-        <ul>
-          {this.state.currentPlayerList.map((player, index)=>{
-            return (
-              <li key={`id=${index}`}>
-              Player {`${index+1}`}: {player.name}, {player.buyin} $
-              </li>
-            )
-          })}
-        </ul>
-        <button onClick={this.handleSubmitNewGame} >START GAME</button>
+        <PlayerList playerList={currentPlayerList} />
+        <div className="start-btn-box">
+          <button onClick={this.handleSubmitNewGame} className="start-btn">START</button>
+        </div>
+        
         
       </div>
     );

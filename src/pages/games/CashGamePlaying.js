@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
+import Header from '../../components/Header';
+
 class CashGamePlaying extends Component {
 
   state = {
@@ -29,8 +31,8 @@ class CashGamePlaying extends Component {
     const { id } = this.props.match.params;
     const { currentPlayerList, pot } = this.state;
     return (
-      <div>
-        <h1>Game playing</h1>
+      <div className="container">
+        <Header title="Game playing:" />
         <ul>
           {currentPlayerList.map((player)=>{
             return (
