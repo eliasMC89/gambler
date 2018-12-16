@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
+import CurrentPlayerCard from '../../components/CurrentPlayerCard';
 
 class CashGamePlaying extends Component {
 
@@ -33,19 +34,17 @@ class CashGamePlaying extends Component {
     return (
       <div className="container">
         <Header title="Game playing:" />
-        <ul>
+        <ul className="player-list" >
           {currentPlayerList.map((player)=>{
-            return (
-              <li key={`id=${player._id}`}>
-                <div>{player.name}, {player.buyin}</div>
-                <div><Link to={`/cash-game/${id}/rebuy/${player._id}`} >Rebuy</Link></div>
-                <div><Link to={`/cash-game/${id}/final-stack/${player._id}`} >Final Stack</Link></div>
-              </li>
-            )
+            return  <CurrentPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
           })}
         </ul>
-        <div><p>Pot: {pot}</p></div>
-        <Link to={`/cash-game/${id}/summary`} onClick={this.handleEndGame} >END GAME</Link>
+        <div className="playing-pot-box">
+          <h3 className="playing-pot">Pot: {pot} $</h3>
+        </div>
+        <div className="end-game-btn-box">
+          <Link to={`/cash-game/${id}/summary`} onClick={this.handleEndGame} className="end-game-btn">END GAME</Link>
+        </div>
       </div>
     );
   }

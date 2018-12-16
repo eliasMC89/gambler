@@ -89,6 +89,10 @@ p {
 
 }
 
+.player-list {
+  padding: 0;
+}
+
 /* ------- PAGES ------- */
 
 /* --- landing --- */
@@ -260,7 +264,180 @@ p {
   margin: 10px;
 }
 
-.add-player-list {
-  padding: 0;
+/* --- game playing --- */
+
+.current-player-card {
+  list-style: none;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10px;
 }
+
+.current-player-info {
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.current-player-link {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.current-player-buttons {
+  margin: 5px;
+  margin-bottom: 8px;
+}
+
+.rebuy-btn {
+  background-color: green;
+}
+
+.final-stack-btn {
+  background-color: red;
+}
+
+.end-game-btn-box {
+  text-align: center;
+}
+
+.end-game-btn {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 1px black;
+}
+
+.playing-pot {
+  margin: 25px 15px;
+}
+
+/* --- rebuy & final stack --- */
+
+.playing-form {
+  margin-top: 30px;
+}
+
+.playing-input {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  width: 80px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.playing-submit-btn {
+  background-color: red;
+  height: 50px;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+/* --- game summary --- */
+
+.bi-fs-infobox {
+  display: flex;
+}
+
+.bi-fs-infobox p {
+  padding: 0px 15px;
+}
+
+.summary-player-info {
+  padding: 5px;
+}
+
+.summary-name {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-left: 20px;
+}
+
+.summary-player-win {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.done-link-box {
+  text-align: center;
+  margin: 50px;
+}
+
+.done-game-link {
+  text-decoration: none;
+  background-color: green;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 1px green;
+}
+
+.delete-game-btn {
+  background-color: red;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-bottom: 40px;
+}
+
+/* --- profile --- */
+
+.profile-header {
+  display: flex;
+}
+
+.logout-btn-box {
+  text-align: right;
+}
+
+.logout-btn {
+  text-decoration: none;
+}
+
+.my-games-btn-box {
+  margin: 40px;
+  text-align: center;
+}
+
+.my-games-link {
+  text-decoration: none;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.backhome-link {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.my-info-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.my-info-container li {
+  list-style: none;
+  padding: 10px;
+}
+
+.my-info-tag {
+  font-weight: bold;
+}
+
 

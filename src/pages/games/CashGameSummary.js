@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
+import { Link } from 'react-router-dom';
+
+import Header from '../../components/Header';
+import SummaryPlayerCard from '../../components/SummaryPlayerCard';
 
 class CashGameSummary extends Component {
 
@@ -54,23 +57,23 @@ class CashGameSummary extends Component {
   render() {
     const { playerList, pot, duration } = this.state;
     return (
-      <div>
-        <h1>Game Summary</h1>
-        <p>Total Pot: {pot}</p>
-        <ul>
-          {playerList.map((player, index)=>{
-            return (
-              <li key={`id=${index}`}>
-              <div>{player.name}, {player.buyin}</div>
-              <div>Final Stack: {player.finalStack}</div>
-              <div>Wins: {player.finalStack - player.buyin}</div>
-              </li>
-            )
+      <div className="container">
+        <Header title="Game summary:" />
+        <h3>Total pot: {pot}</h3>
+        <p>Duration: {this.msToTime(duration)}</p>
+        <ul className="player-list">
+          {playerList.map((player)=>{
+            return <SummaryPlayerCard key={`id=${player._id}`} player={player} />
           })}
         </ul>
-        <p>Duration: {this.msToTime(duration)}</p>
-        <button onClick={this.handleDeleteGame} >Delete Game</button>
-        <Link to="/home" >Back Home</Link>
+        <div className="done-link-box">
+          <Link to="/home" className="done-game-link">DONE</Link>
+        </div>
+        
+        <div className="delete-game-btn-box">
+          <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+        </div>
+        
       </div>
     );
   }

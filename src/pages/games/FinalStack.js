@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 
+import Header from '../../components/Header';
+
 class FinalStack extends Component {
 
   state = {
@@ -32,11 +34,11 @@ class FinalStack extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Final Stack for player</h1>
-        <form onSubmit={this.handleSubmitStack} >
-          <input type="number" onChange={this.handleInputChange} />
-          <input type="submit" value="FinalStack"/>
+      <div className="container" >
+        <Header title="Final stack"/>
+        <form onSubmit={this.handleSubmitStack} className="playing-form" >
+          <input type="number" onChange={this.handleInputChange} className="playing-input" />
+          <input type="submit" value="FinalStack" className="playing-submit-btn" />
         </form>
       </div>
     );

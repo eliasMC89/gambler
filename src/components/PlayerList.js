@@ -6,7 +6,7 @@ class PlayerList extends Component {
   render() {
     const { playerList } = this.props;
     return (
-      <ul className="add-player-list">
+      <ul className="player-list">
         {playerList.map((player)=>{
           return <AddPlayerCard player={player} />
         })}
