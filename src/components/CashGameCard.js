@@ -24,7 +24,6 @@ class CashGameCard extends Component {
   }
 
   msToTime = (durationInMs) => {
-    // let milliseconds = parseInt((duration % 1000) / 100)
     let seconds = parseInt((durationInMs / 1000) % 60),
     minutes = parseInt((durationInMs / (1000 * 60)) % 60),
     hours = parseInt((durationInMs / (1000 * 60 * 60)) % 24);
@@ -34,10 +33,6 @@ class CashGameCard extends Component {
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
     return hours + ":" + minutes + ":" + seconds;
-  }
-
-  toStringDate = (date) => {
-    
   }
 
   msToDate = (date) => {

@@ -338,6 +338,7 @@ p {
 
 .end-game-btn-box {
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .end-game-btn {
@@ -519,6 +520,14 @@ p {
 .backprofile-box {
   text-align: center;
   margin-bottom: 40px;
+}
+
+.is-playing {
+  background-color: green;
+}
+
+.is-not-playing {
+  background-color: grey;
 }
 
 

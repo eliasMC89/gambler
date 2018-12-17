@@ -27,11 +27,19 @@ class MyGames extends Component {
         <Header title="My games:"/>
         <ul className="game-list">
           {myGames.map((game)=>{
-            return(
-              <li key={`${game._id}`}>
-                <Link to={`/cash-game/${game._id}/summary`} className="game-link"><CashGameCard game={game} /></Link>
-              </li>
-            )
+            if (game.isPlaying) {
+              return(
+                <li key={`${game._id}`}>
+                  <Link to={`/cash-game/${game._id}/playing`} className="game-link"><CashGameCard game={game}/></Link>
+                </li>
+              )
+            } else {
+              return(
+                <li key={`${game._id}`}>
+                  <Link to={`/cash-game/${game._id}/summary`} className="game-link"><CashGameCard game={game}/></Link>
+                </li>
+              )
+            }
           })}
         </ul>
         <div className="backprofile-box">

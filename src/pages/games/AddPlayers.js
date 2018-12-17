@@ -68,9 +68,8 @@ class AddPlayer extends Component {
     const { currentPlayerList } = this.state;
 
     const pot = this.getTotalPot(this.state.currentPlayerList);
-    const isPlaying = true;
     const owner = this.props.user._id;
-    cash.create({currentPlayerList, pot, isPlaying, owner})
+    cash.create({currentPlayerList, pot, owner})
       .then((res)=>{
         this.props.history.push(`/cash-game/${res.game._id}/playing`)
       })
