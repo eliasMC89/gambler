@@ -12,7 +12,7 @@ class CashGamePlaying extends Component {
     currentPlayerList: [],
     pot: 0,
     remainingPot: 0,
-    playersRemaining: true,
+    playersRemainingError: false,
   }
 
   componentDidMount () {
@@ -23,21 +23,39 @@ class CashGamePlaying extends Component {
           currentPlayerList: cashGame.currentPlayerList,
           pot: cashGame.pot,
           remainingPot: cashGame.remainingPot,
+          playersRemainingError: false,
         })
       })
   }
 
+  checkPlayersRemaining = (playerList) => {
+    for (let i = 0; i < playerList.length; i++){
+      if (playerList[i].isPlaying){
+        return true;
+      }
+    }
+    return false;
+  }
+
   handleEndGame = () => {
     const { id } = this.props.match.params;
-    cash.endGame(id)
-      .then(()=>{
-        this.props.history.push(`/cash-game/${id}/summary`);
+    console.log(this.state.currentPlayerList);
+    console.log(this.checkPlayersRemaining(this.state.currentPlayerList));
+    if (this.checkPlayersRemaining(this.state.currentPlayerList)) {
+      this.setState({
+        playersRemainingError: true,
       })
+    } else {
+      cash.endGame(id)
+        .then(()=>{
+          this.props.history.push(`/cash-game/${id}/summary`);
+        })
+    }
   }
 
   render() {
     const { id } = this.props.match.params;
-    const { currentPlayerList, pot, remainingPot } = this.state;
+    const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;
     return (
       <div className="container">
         <Header title="Game playing:" />
@@ -60,6 +78,7 @@ class CashGamePlaying extends Component {
         <div className="end-game-btn-box">
           <button onClick={this.handleEndGame} className="end-game-btn">END GAME</button>
         </div>
+        { playersRemainingError ? <h4 className="error-msg">Players still playing!</h4> : ''}
       </div>
     );
   }
