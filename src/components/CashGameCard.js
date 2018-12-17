@@ -43,7 +43,7 @@ class CashGameCard extends Component {
   render() {
     const { game } = this.props;
     return (
-      <div className="game-card-container">
+      <div className={`game-card-container ${this.props.class}`}>
         <div className="first-line-game-info">
           <p>{this.msToDate(Date.parse(game.startDate))}</p>
           <p><span className="pot-info">Pot: {game.pot}</span></p>
@@ -52,8 +52,6 @@ class CashGameCard extends Component {
           <p>Duration: {this.msToTime(this.state.duration)}</p>
           <p>Players: {game.currentPlayerList.length}</p>
         </div>
-        
-        
       </div>
     );
   }

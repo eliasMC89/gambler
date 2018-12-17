@@ -30,13 +30,13 @@ class MyGames extends Component {
             if (game.isPlaying) {
               return(
                 <li key={`${game._id}`}>
-                  <Link to={`/cash-game/${game._id}/playing`} className="game-link"><CashGameCard game={game}/></Link>
+                  <Link to={`/cash-game/${game._id}/playing`} className="game-link"><CashGameCard game={game} class="is-playing" /></Link>
                 </li>
               )
             } else {
               return(
                 <li key={`${game._id}`}>
-                  <Link to={`/cash-game/${game._id}/summary`} className="game-link"><CashGameCard game={game}/></Link>
+                  <Link to={`/cash-game/${game._id}/summary`} className="game-link"><CashGameCard game={game} class="is-not-playing" /></Link>
                 </li>
               )
             }
