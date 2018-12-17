@@ -19,11 +19,11 @@ class Login extends Component {
     .then((responseUser) => {
       this.props.setUser(responseUser);
     })
-    .catch(error => 
+    .catch(error => {
       this.setState({
-        statusError: error,
+        statusError: error.response.data.error,
       })
-    )
+    })
   }
 
   render() {
@@ -32,7 +32,7 @@ class Login extends Component {
       
       <div className="container li-su-container">
         <h1 className="li-su-title">Log In</h1>
-        { statusError ? <h4 className="error-msg">Error!</h4> : ''}
+        { statusError ? <h4 className="error-msg">{this.state.statusError}</h4> : ''}
         <FormUser whenSomeOnePressSubmit={this.handleFormSubmit} />
         <div className="to-su-li">
           <div>
