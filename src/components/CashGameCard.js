@@ -7,11 +7,12 @@ class CashGameCard extends Component {
     duration: '',
     numPlayers: 0,
     pot: 0,
+    isPlaying: true,
   }
 
   componentDidMount () {
     const { game } = this.props;
-    const { currentPlayerList, pot, startDate, endDate } = game;
+    const { currentPlayerList, pot, startDate, endDate, isPlaying } = game;
     const duration = Date.parse(endDate) - Date.parse(startDate);
     const numPlayers = currentPlayerList.length;
   
@@ -20,6 +21,7 @@ class CashGameCard extends Component {
       duration,
       numPlayers,
       pot,
+      isPlaying,
     })
   }
 
@@ -41,6 +43,7 @@ class CashGameCard extends Component {
   }
 
   render() {
+    const { isPlaying } = this.state;
     const { game } = this.props;
     return (
       <div className={`game-card-container ${this.props.class}`}>
@@ -49,7 +52,8 @@ class CashGameCard extends Component {
           <p><span className="pot-info">Pot: {game.pot}</span></p>
         </div>
         <div className="second-line-game-info">
-          <p>Duration: {this.msToTime(this.state.duration)}</p>
+        { isPlaying ? '' : <p>Duration: {this.msToTime(this.state.duration)}</p>}
+          
           <p>Players: {game.currentPlayerList.length}</p>
         </div>
       </div>

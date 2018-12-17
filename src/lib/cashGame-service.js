@@ -28,6 +28,13 @@ class CashGameService {
       }) 
   }
 
+  newPlayer(id, newRebuy, currentPlayerList) {
+    return this.cash.put(`/cash-game/${id}/new-player`, { newRebuy, currentPlayerList })
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
   updateStack(playerId, finalStack) {
     return this.cash.put(`/cash-game/player-stack/${playerId}`, {finalStack})
       .then((res)=>{

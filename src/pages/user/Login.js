@@ -33,7 +33,7 @@ class Login extends Component {
       <div className="container li-su-container">
         <h1 className="li-su-title">Log In</h1>
         { statusError ? <h4 className="error-msg">{this.state.statusError}</h4> : ''}
-        <FormUser whenSomeOnePressSubmit={this.handleFormSubmit} />
+        <FormUser submit={this.handleFormSubmit} />
         <div className="to-su-li">
           <div>
             <p>Not a member?</p>

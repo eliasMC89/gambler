@@ -18,6 +18,7 @@ class MyGames extends Component {
           myGames,
         })
       })
+    
   }
 
   render() {

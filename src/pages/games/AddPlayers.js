@@ -31,17 +31,17 @@ class AddPlayer extends Component {
 
   handleSubmitPlayer = (event) => {
     event.preventDefault();
-    const { currentPlayerName, currentPlayerBuyIn } = this.state;
+    const {currentPlayerBuyIn, currentPlayerName, currentPlayerList} = this.state;
     if(!currentPlayerName || !currentPlayerBuyIn){
       this.setState({
         emptyInput: true,
       })
       return;
     }
-    const newCurrentPlayerList = this.state.currentPlayerList;
+    const newCurrentPlayerList = currentPlayerList;
     const newPlayer = {
-      name: this.state.currentPlayerName,
-      buyin: this.state.currentPlayerBuyIn,
+      name: currentPlayerName,
+      buyin: currentPlayerBuyIn,
       finalStack: 0,
       isPlaying: true,
     }
@@ -49,7 +49,7 @@ class AddPlayer extends Component {
     this.setState({
       currentPlayerList: newCurrentPlayerList,
       currentPlayerName: '',
-      currentPlayerBuyIn: 0,
+      currentPlayerBuyIn: '',
     }, this.setState({
       emptyInput: false,
     }))
@@ -66,10 +66,10 @@ class AddPlayer extends Component {
   handleSubmitNewGame = (event) => {
     event.preventDefault();
     const { currentPlayerList } = this.state;
-
-    const pot = this.getTotalPot(this.state.currentPlayerList);
+    const isPlaying = true;
+    const pot = this.getTotalPot(currentPlayerList);
     const owner = this.props.user._id;
-    cash.create({currentPlayerList, pot, owner})
+    cash.create({currentPlayerList, pot, owner, isPlaying})
       .then((res)=>{
         this.props.history.push(`/cash-game/${res.game._id}/playing`)
       })
@@ -78,8 +78,7 @@ class AddPlayer extends Component {
   }
 
   render() {
-    const { currentPlayerName, currentPlayerBuyIn, currentPlayerList, emptyInput } = this.state;
-    console.log(emptyInput);
+    const { currentPlayerList, emptyInput, currentPlayerName, currentPlayerBuyIn } = this.state;
     return (
       <div className="container">
         <Header title="Players:" />

@@ -10,7 +10,7 @@ class FormUser extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    this.props.whenSomeOnePressSubmit({ username, password});
+    this.props.submit({ username, password});
   }
 
   handleChange = (event) => {  

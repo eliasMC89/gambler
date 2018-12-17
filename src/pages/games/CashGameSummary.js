@@ -12,14 +12,13 @@ class CashGameSummary extends Component {
     pot: 0,
     startDate: '',
     endDate: '',
-    duration: 'some',
+    duration: '',
   }
 
   componentDidMount () {
   const { id } = this.props.match.params;
   cash.getDetail(id)
     .then((cashGame)=>{
-      console.log(cashGame);
       const { currentPlayerList, pot, startDate, endDate } = cashGame;
       const duration = Date.parse(endDate) - Date.parse(startDate);
 
