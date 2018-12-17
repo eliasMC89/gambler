@@ -7,6 +7,18 @@ class FinalStack extends Component {
 
   state = {
     finalStack: 0,
+    remainingPot: 0,
+    notEnoughPotError: false,
+  }
+
+  componentDidMount () {
+    const { id } = this.props.match.params;
+    cash.getDetail(id)
+      .then((cashGame)=>{
+        this.setState({
+          remainingPot: cashGame.remainingPot,
+        })
+      })
   }
 
   handleInputChange = (event) => {
@@ -16,23 +28,34 @@ class FinalStack extends Component {
     })
   }
 
+  checkRemainingPot = () => {
+    const { finalStack, remainingPot } = this.state;
+    return (finalStack <= remainingPot);
+  }
+
   handleSubmitStack = (event) => {
     event.preventDefault();
-
-
-    const finalStack = this.state.finalStack;
+    const { finalStack } = this.state;
     const { id, playerId } = this.props.match.params;
+    console.log(this.checkRemainingPot())
 
-    cash.updateStack(id, playerId, finalStack)
-      .then((res)=>{
-        console.log(res)
-        this.props.history.push(`/cash-game/${id}/playing`);
+    if (this.checkRemainingPot()){
+      cash.updateStack(id, playerId, finalStack)
+        .then((res)=>{
+          console.log(res)
+          this.props.history.push(`/cash-game/${id}/playing`);
+        })
+        .catch( error => console.log(error) )
+    } else {
+      this.setState({
+        notEnoughPotError: true,
       })
-      .catch( error => console.log(error) )
+    }
 
   }
 
   render() {
+    const { notEnoughPotError } = this.state;
     return (
       <div className="container" >
         <Header title="Final stack"/>
@@ -40,6 +63,8 @@ class FinalStack extends Component {
           <input type="number" onChange={this.handleInputChange} className="playing-input" />
           <input type="submit" value="FinalStack" className="playing-submit-btn" />
         </form>
+        { notEnoughPotError ? <h4 className="error-msg">Final stack incorrect!</h4> : ''}
+        
       </div>
     );
   }
