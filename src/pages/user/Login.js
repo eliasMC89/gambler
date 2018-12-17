@@ -2,56 +2,38 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../../lib/auth-service';
 import { withAuth } from '../../providers/AuthProvider';
+import FormUser from '../../components/FormUser';
+
+
+
 
 class Login extends Component {
+
   state = {
-    username: "",
-    password: "",
+    statusError: '',
   }
+  
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const { username, password } = this.state
-
-    auth.login({ username, password })
-    .then( (user) => {
-      this.props.setUser(user);
+  handleFormSubmit = (user) => {
+    auth.login(user)
+    .then((responseUser) => {
+      this.props.setUser(responseUser);
     })
-    .catch( error => console.log(error) )
-  }
-
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+    .catch(error => 
+      this.setState({
+        statusError: error,
+      })
+    )
   }
 
   render() {
-    const { username, password } = this.state;
+    const { statusError } = this.state;
     return (
+      
       <div className="container li-su-container">
         <h1 className="li-su-title">Log In</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="username-container">
-            <div>
-              <label>Username:</label>
-            </div>
-            <div className="li-su-input-container">
-              <input type="text" name="username" value={username} onChange={this.handleChange} className="li-su-input"/>
-            </div>
-          </div>
-          <div className="password-container">
-            <div>
-              <label>Password:</label>
-            </div>
-            <div className="li-su-input-container">
-              <input type="password" name="password" value={password} onChange={this.handleChange} className="li-su-input"/>
-            </div>
-          </div>
-          <div className="li-su-btn-container">
-            <input type="submit" value="Login" className="li-su-btn"/>
-          </div>
-          
-        </form>
+        { statusError ? <h4 className="error-msg">Error!</h4> : ''}
+        <FormUser whenSomeOnePressSubmit={this.handleFormSubmit} />
         <div className="to-su-li">
           <div>
             <p>Not a member?</p>

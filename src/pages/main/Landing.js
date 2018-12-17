@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import trebol from './trebol-poker.png';
 import Navbar from '../../components/Navbar';
 
 class Landing extends Component {
@@ -9,7 +9,7 @@ class Landing extends Component {
         <Navbar />
         <div className="container">
           <div className="main-title">
-            <h1>G<img src={require('./trebol-poker.png')} alt="trebol"></img>MBLER</h1>
+            <h1>G<img src={trebol} alt="trebol"></img>MBLER</h1>
           </div>
         </div>
         <div className="container landing-text">

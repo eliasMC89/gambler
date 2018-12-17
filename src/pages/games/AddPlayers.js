@@ -10,8 +10,8 @@ class AddPlayer extends Component {
   state = {
     currentPlayerList: [],
     currentPlayerName: '',
-    currentPlayerBuyIn: 0,
-    title: 'Players',
+    currentPlayerBuyIn: '',
+    emptyInput: false,
   }
 
   handleNameChange = (event) => {  
@@ -31,18 +31,28 @@ class AddPlayer extends Component {
 
   handleSubmitPlayer = (event) => {
     event.preventDefault();
+    const { currentPlayerName, currentPlayerBuyIn } = this.state;
+    if(!currentPlayerName || !currentPlayerBuyIn){
+      this.setState({
+        emptyInput: true,
+      })
+      return;
+    }
     const newCurrentPlayerList = this.state.currentPlayerList;
     const newPlayer = {
       name: this.state.currentPlayerName,
       buyin: this.state.currentPlayerBuyIn,
       finalStack: 0,
+      isPlaying: true,
     }
     newCurrentPlayerList.push(newPlayer);
     this.setState({
       currentPlayerList: newCurrentPlayerList,
       currentPlayerName: '',
       currentPlayerBuyIn: 0,
-    })
+    }, this.setState({
+      emptyInput: false,
+    }))
   }
 
   getTotalPot = (playerList) => {
@@ -54,12 +64,12 @@ class AddPlayer extends Component {
   }
 
   handleSubmitNewGame = (event) => {
-    event.preventDefault();    
-    const currentPlayerList = this.state.currentPlayerList;
+    event.preventDefault();
+    const { currentPlayerList } = this.state;
+
     const pot = this.getTotalPot(this.state.currentPlayerList);
     const isPlaying = true;
     const owner = this.props.user._id;
-
     cash.create({currentPlayerList, pot, isPlaying, owner})
       .then((res)=>{
         this.props.history.push(`/cash-game/${res.game._id}/playing`)
@@ -69,10 +79,12 @@ class AddPlayer extends Component {
   }
 
   render() {
-    const { currentPlayerName, currentPlayerBuyIn, currentPlayerList } = this.state;
+    const { currentPlayerName, currentPlayerBuyIn, currentPlayerList, emptyInput } = this.state;
+    console.log(emptyInput);
     return (
       <div className="container">
-        <Header title={this.state.title} />
+        <Header title="Players:" />
+        { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
         <form onSubmit={this.handleSubmitPlayer} className="add-player-form">
           <div className="add-name-box">
             <label>Name: </label>

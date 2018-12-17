@@ -149,14 +149,12 @@ p {
 
 .li-su-input-container {
   margin-top: 15px;
-
 }
 
 .li-su-container {
-  margin-top: 120px;
+  margin-top: 100px;
   border: 2px solid black;
   border-radius: 10px;
-  /* box-shadow: 0px 0px 20px 5px rgba(168,15,71,1); */
   box-shadow: 0px 0px 5px 1px #8C0000;
 }
 
@@ -201,6 +199,12 @@ p {
 
 .li-su-link {
   color: #8C0000;
+}
+
+.error-msg {
+  color: red;
+  text-align: center;
+  margin: 0;
 }
 
 /* --- home --- */
@@ -300,6 +304,10 @@ p {
   border: 1px solid black;
   margin: 10px auto;
   border-radius: 10px;
+}
+
+.finished-player {
+  background-color: grey;
 }
 
 .current-player-info {

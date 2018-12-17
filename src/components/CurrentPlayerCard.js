@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class CurrentPlayerCard extends Component {
+
   render() {
     const { player, gameId } = this.props;
     return (

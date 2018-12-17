@@ -8,6 +8,7 @@ class Signup extends Component {
   state = {
     username: '',
     password: '',
+    statusError: '',
   };
 
   handleFormSubmit = (event) => {
@@ -23,7 +24,11 @@ class Signup extends Component {
         });
         this.props.setUser(user)
       })
-      .catch( error => console.log(error) )
+      .catch( error => {
+        this.setState({
+          statusError: error,
+        })
+      } )
   }
 
   handleChange = (event) => {  
@@ -32,10 +37,11 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, statusError } = this.state;
     return (
       <div className="container li-su-container">
         <h1 className="li-su-title">Sign Up</h1>
+        { statusError ? <h4 className="error-msg">Error!</h4> : ''}
         <form onSubmit={this.handleFormSubmit}>
           <div className="username-container">
             <div>

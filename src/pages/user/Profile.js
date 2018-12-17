@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router-dom';
-import { withAuth } from '../../providers/AuthProvider';
 
 import PrivateRoute from '../../components/PrivateRoute';
 import MyGames from './MyGames';
@@ -8,7 +7,6 @@ import MyInfo from './MyInfo';
 import Navbar from '../../components/Navbar';
 
 class Profile extends Component {
-
   render() {
     const { match } = this.props
     return (
@@ -23,4 +21,4 @@ class Profile extends Component {
   }
 }
 
-export default withAuth(Profile);
+export default Profile;

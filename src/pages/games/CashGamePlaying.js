@@ -4,6 +4,7 @@ import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
 import CurrentPlayerCard from '../../components/CurrentPlayerCard';
+import FinishedPlayerCard from '../../components/FinishedPlayerCard';
 
 class CashGamePlaying extends Component {
 
@@ -36,7 +37,11 @@ class CashGamePlaying extends Component {
         <Header title="Game playing:" />
         <ul className="player-list" >
           {currentPlayerList.map((player)=>{
-            return  <CurrentPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
+            if (player.isPlaying){
+              return <CurrentPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
+            } else {
+              return <FinishedPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
+            }
           })}
         </ul>
         <div className="playing-pot-box">
