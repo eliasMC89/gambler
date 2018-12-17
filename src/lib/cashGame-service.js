@@ -9,8 +9,8 @@ class CashGameService {
   }
 
   create(game) {
-    const { currentPlayerList, pot, isPlaying, owner } = game;
-    return this.cash.post('/cash-game/create', { currentPlayerList, pot, isPlaying, owner })
+    const { currentPlayerList, pot, remainingPot, isPlaying, owner } = game;
+    return this.cash.post('/cash-game/create', { currentPlayerList, pot, remainingPot, isPlaying, owner })
       .then(({ data }) => data);
   }
 
@@ -35,8 +35,8 @@ class CashGameService {
       })
   }
 
-  updateStack(playerId, finalStack) {
-    return this.cash.put(`/cash-game/player-stack/${playerId}`, {finalStack})
+  updateStack(id, playerId, finalStack) {
+    return this.cash.put(`/cash-game/${id}/player-stack/${playerId}`, {finalStack})
       .then((res)=>{
         return res.data;
       })

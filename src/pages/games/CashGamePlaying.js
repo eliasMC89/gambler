@@ -11,6 +11,8 @@ class CashGamePlaying extends Component {
   state = {
     currentPlayerList: [],
     pot: 0,
+    remainingPot: 0,
+    playersRemaining: true,
   }
 
   componentDidMount () {
@@ -20,6 +22,7 @@ class CashGamePlaying extends Component {
         this.setState({
           currentPlayerList: cashGame.currentPlayerList,
           pot: cashGame.pot,
+          remainingPot: cashGame.remainingPot,
         })
       })
   }
@@ -34,7 +37,7 @@ class CashGamePlaying extends Component {
 
   render() {
     const { id } = this.props.match.params;
-    const { currentPlayerList, pot } = this.state;
+    const { currentPlayerList, pot, remainingPot } = this.state;
     return (
       <div className="container">
         <Header title="Game playing:" />
@@ -52,6 +55,7 @@ class CashGamePlaying extends Component {
         </div>
         <div className="playing-pot-box">
           <h3 className="playing-pot">Pot: {pot} $</h3>
+          <h4>(Remaining pot: {remainingPot})</h4>
         </div>
         <div className="end-game-btn-box">
           <button onClick={this.handleEndGame} className="end-game-btn">END GAME</button>

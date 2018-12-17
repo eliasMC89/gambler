@@ -23,7 +23,7 @@ class FinalStack extends Component {
     const finalStack = this.state.finalStack;
     const { id, playerId } = this.props.match.params;
 
-    cash.updateStack(playerId, finalStack)
+    cash.updateStack(id, playerId, finalStack)
       .then((res)=>{
         console.log(res)
         this.props.history.push(`/cash-game/${id}/playing`);
