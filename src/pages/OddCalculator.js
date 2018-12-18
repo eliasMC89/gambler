@@ -84,7 +84,6 @@ class OddCalculator extends Component {
         return CardGroup.fromString(cards);
       })
       const result = OddsCalculator.calculate(newCardsArray)
-      console.log("result",result)
       const newResultsArray = [];
       for (let i = 0; i < newCardsArray.length; i++){
         newResultsArray.push(result.equities[i].getEquity());

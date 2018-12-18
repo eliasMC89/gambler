@@ -596,4 +596,27 @@ p {
   border-radius: 10px;
 }
 
+.share-btn {
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.search-btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 6px;
+}
+
+.user-found {
+  margin: 10px;
+  font-weight: bold;
+}
+
+.user-found-box {
+  display: flex;
+}
+
 

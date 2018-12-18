@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import auth from '../../lib/auth-service';
+import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
 
-class SearchShare extends Component {
+class SearchShareGame extends Component {
 
   state = {
     searchPlayer: '',
     listPlayerNames: [],
-    foundPlayer: '',
+    foundPlayer: {},
     notFoundPlayer: false,
   }
 
@@ -28,7 +29,7 @@ class SearchShare extends Component {
         if (user){
           this.setState({
             searchPlayer: '',
-            foundPlayer: user.username,
+            foundPlayer: user,
             notFoundPlayer: false,
           })
         } else {
@@ -45,21 +46,44 @@ class SearchShare extends Component {
 
   }
 
+  handleClickShare = () => {
+    // make post to add user id in pending owners
+    const { id } = this.props.match.params;
+    const { foundPlayer } = this.state;
+    
+    cash.shareGame(id, foundPlayer._id)
+      .then((res)=>{
+        this.props.history.goBack();
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+  }
+
+  showPlayer = (username) => {
+    return (
+      <div className="user-found-box">
+        <p className="user-found">{username}</p>
+        <button onClick={this.handleClickShare} className="share-btn">SHARE</button>
+      </div>
+    )
+  }
+
+
   render() {
     const { searchPlayer, foundPlayer, notFoundPlayer } = this.state;
     return (
       <div className="container">
         <Header title="Search user:"/>
-        <form onSubmit={this.onSubmitSearch} >
+        <form onSubmit={this.onSubmitSearch} className="user-found-box">
           <div className="add-name-box">
-            <label>Name: </label>
-            <input type="text" name="name" value={searchPlayer} onChange={this.handleNameChange} className="add-name-input" />
+            <input type="text" name="name" value={searchPlayer} onChange={this.handleNameChange} className="add-name-input" placeholder="Search user"/>
           </div>
           <div className="add-player-btn-box">
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" className="search-btn"/>
           </div>
         </form>
-        { foundPlayer ? <div><h5>{foundPlayer}</h5></div> : ''}
+        { foundPlayer.username ? this.showPlayer(foundPlayer.username) : ''}
         { notFoundPlayer ? <div><h4 className="error-msg">Player not exists!</h4></div> : ''}
         
       </div>
@@ -67,4 +91,4 @@ class SearchShare extends Component {
   }
 }
 
-export default SearchShare;
+export default SearchShareGame;

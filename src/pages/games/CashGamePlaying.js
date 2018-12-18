@@ -39,8 +39,6 @@ class CashGamePlaying extends Component {
 
   handleEndGame = () => {
     const { id } = this.props.match.params;
-    console.log(this.state.currentPlayerList);
-    console.log(this.checkPlayersRemaining(this.state.currentPlayerList));
     if (this.checkPlayersRemaining(this.state.currentPlayerList)) {
       this.setState({
         playersRemainingError: true,

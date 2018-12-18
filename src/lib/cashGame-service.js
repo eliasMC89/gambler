@@ -62,6 +62,13 @@ class CashGameService {
         return res.data;
       })
   }
+
+  shareGame (gameId, shareUserId) {
+    return this.cash.put(`/cash-game/${gameId}/share/${shareUserId}`)
+      .then((res)=>{
+        return res.data;
+      })
+  }
 }
 
 const cashGameService = new CashGameService();

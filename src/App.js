@@ -13,7 +13,6 @@ import AuthProvider from './providers/AuthProvider';
 import NotFound from './pages/main/NotFound';
 import Landing from './pages/main/Landing';
 import OddCalculator from './pages/OddCalculator';
-import SearchShare from './pages/share/SearchShare';
 
 class App extends Component {
   render() {
@@ -28,7 +27,6 @@ class App extends Component {
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/cash-game" component={CashGame} />
             <PrivateRoute path="/odds-calculator" component={OddCalculator} />
-            <PrivateRoute path="/share-game" component={SearchShare} />
             <Route component={NotFound} />
           </Switch>
         </div>

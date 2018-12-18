@@ -16,19 +16,19 @@ class CashGameSummary extends Component {
   }
 
   componentDidMount () {
-  const { id } = this.props.match.params;
-  cash.getDetail(id)
-    .then((cashGame)=>{
-      const { currentPlayerList, pot, startDate, endDate } = cashGame;
-      const duration = Date.parse(endDate) - Date.parse(startDate);
+    const { id } = this.props.match.params;
+    cash.getDetail(id)
+      .then((cashGame)=>{
+        const { currentPlayerList, pot, startDate, endDate } = cashGame;
+        const duration = Date.parse(endDate) - Date.parse(startDate);
 
-      this.setState({
-        playerList: currentPlayerList,
-        pot,
-        startDate,
-        duration
+        this.setState({
+          playerList: currentPlayerList,
+          pot,
+          startDate,
+          duration
+        })
       })
-    })
   }
 
   handleDeleteGame = () => {
@@ -70,7 +70,7 @@ class CashGameSummary extends Component {
           <Link to="/home" className="done-game-link">DONE</Link>
         </div>
         <div>
-          <Link to={`/share-game/${id}/search-user`} >Share game</Link>
+          <Link to={`/cash-game/${id}/share`} >Share game</Link>
         </div>
         <div className="delete-game-btn-box">
           <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>

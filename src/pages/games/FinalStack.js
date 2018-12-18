@@ -37,12 +37,10 @@ class FinalStack extends Component {
     event.preventDefault();
     const { finalStack } = this.state;
     const { id, playerId } = this.props.match.params;
-    console.log(this.checkRemainingPot())
 
     if (this.checkRemainingPot()){
       cash.updateStack(id, playerId, finalStack)
         .then((res)=>{
-          console.log(res)
           this.props.history.push(`/cash-game/${id}/playing`);
         })
         .catch( error => console.log(error) )

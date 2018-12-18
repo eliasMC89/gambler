@@ -10,6 +10,7 @@ import CashRebuy from './CashRebuy';
 import CashGameSummary from './CashGameSummary';
 import FinalStack from './FinalStack';
 import NewPlayer from './NewPlayer';
+import SearchShareGame from './SearchShareGame';
 
 class CashGame extends Component {
 
@@ -27,6 +28,7 @@ class CashGame extends Component {
           <PrivateRoute path={`${match.path}/:id/final-stack/:playerId`} component={FinalStack} />
           <PrivateRoute path={`${match.path}/:id/summary`} component={CashGameSummary} />
           <PrivateRoute path={`${match.path}/:id/new-player`} component={NewPlayer} />
+          <PrivateRoute path={`${match.path}/:id/share`} component={SearchShareGame} />
         </Switch>
           
       </div>
