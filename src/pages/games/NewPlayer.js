@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
+import Header from '../../components/Header';
 
 class NewPlayer extends Component {
   
@@ -65,22 +66,23 @@ class NewPlayer extends Component {
   render() {
     const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
     return (
-      <div>
-        { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
-        <form onSubmit={this.handleNewPlayer} className="add-player-form">
-          <div className="add-name-box">
-            <label>Name: </label>
-            <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
-          </div>
-          <div className="add-buyin-box">
-            <label>Buy in: </label>
-            <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
-          </div>
-          <div className="add-player-btn-box">
-            <input type="submit" value="+" className="add-player-btn"/>
-          </div>
-        </form>
-      </div>
+        <div className="container">
+          <Header title="New player:" />
+          { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
+          <form onSubmit={this.handleNewPlayer} className="add-player-form">
+            <div className="add-name-box">
+              <label>Name: </label>
+              <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
+            </div>
+            <div className="add-buyin-box">
+              <label>Buy in: </label>
+              <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
+            </div>
+            <div className="add-player-btn-box">
+              <input type="submit" value="+" className="add-player-btn"/>
+            </div>
+          </form>
+        </div>
     );
   }
 }

@@ -78,6 +78,7 @@ class AddPlayer extends Component {
     
   }
 
+
   render() {
     const { currentPlayerList, emptyInput, currentPlayerName, currentPlayerBuyIn } = this.state;
     return (
@@ -109,9 +110,7 @@ class AddPlayer extends Component {
         <div className="start-btn-box">
           <button onClick={this.handleSubmitNewGame} className="start-btn">START</button>
         </div>
-        
-        
-      </div>
+      </div>  
     );
   }
 }
