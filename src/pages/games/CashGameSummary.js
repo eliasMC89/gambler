@@ -54,7 +54,7 @@ class CashGameSummary extends Component {
   }
 
   render() {
-    console.log(this.props)
+    const { id } = this.props.match.params;
     const { playerList, pot, duration } = this.state;
     return (
       <div className="container">
@@ -69,7 +69,9 @@ class CashGameSummary extends Component {
         <div className="done-link-box">
           <Link to="/home" className="done-game-link">DONE</Link>
         </div>
-        
+        <div>
+          <Link to={`/share-game/${id}/search-user`} >Share game</Link>
+        </div>
         <div className="delete-game-btn-box">
           <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
         </div>
