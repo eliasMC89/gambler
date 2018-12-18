@@ -224,6 +224,11 @@ p {
   box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
 }
 
+.odd-calc-link {
+  margin-top: 200px;
+  border: 1px solid black;
+}
+
 /* --- add players --- */
 
 .add-players-title {

@@ -54,6 +54,7 @@ class CashGameSummary extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { playerList, pot, duration } = this.state;
     return (
       <div className="container">

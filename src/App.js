@@ -12,6 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthProvider from './providers/AuthProvider';
 import NotFound from './pages/main/NotFound';
 import Landing from './pages/main/Landing';
+import OddCalculator from './pages/OddCalculator';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/cash-game" component={CashGame} />
+            <PrivateRoute path="/odds-calculator" component={OddCalculator} />
             <Route component={NotFound} />
           </Switch>
         </div>
