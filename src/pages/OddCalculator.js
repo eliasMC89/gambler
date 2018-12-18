@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {CardGroup, OddsCalculator} from 'poker-odds-calculator';
 import Header from '../components/Header';
+import Navbar from '../components/Navbar';
 
 class OddCalculator extends Component {
 
@@ -11,6 +13,17 @@ class OddCalculator extends Component {
     showBoard: false,
     oddsCalculated: false,
     resultsArray: [],
+  }
+
+  refreshPage = () => {
+    this.setState({
+      playerCards: '',
+      cardsArray: [],
+      board: '',
+      showBoard: false,
+      oddsCalculated: false,
+      resultsArray: [],
+    })
   }
 
   handleCardsChange = (e) => {
@@ -51,11 +64,11 @@ class OddCalculator extends Component {
 
   showResults = (results) => {
     return (
-      <div>
+      <div className="odds-result">
         {results.map((result, index)=>{
           return (
-            <li key={`id=${index}`}>
-              <p>{result}%</p>
+            <li key={`id=${index}`} className="list-odds-result">
+              {this.state.cardsArray[index]}: <span className="odds-percent">{result} %</span>
             </li>
           )
         })}
@@ -67,10 +80,11 @@ class OddCalculator extends Component {
     const { cardsArray, board } = this.state;
 
     if(!board) {
-      const newCardsArray = cardsArray.map((cards)=>{
+      const newCardsArray = this.state.cardsArray.map((cards)=>{
         return CardGroup.fromString(cards);
       })
-      const result = OddsCalculator.calculate(newCardsArray);
+      const result = OddsCalculator.calculate(newCardsArray)
+      console.log("result",result)
       const newResultsArray = [];
       for (let i = 0; i < newCardsArray.length; i++){
         newResultsArray.push(result.equities[i].getEquity());
@@ -100,52 +114,53 @@ class OddCalculator extends Component {
 
   render() {
     const { playerCards, cardsArray, board, oddsCalculated, resultsArray, showBoard } = this.state;
-    return(
-      <div className="container">
-        <Header title="Odds calculator:" />
-        <form onSubmit={this.handleSubmitCards} >
-          <div >
-            <label>Cards: </label>
-            <input type="text" name="cards" value={playerCards} onChange={this.handleCardsChange} />
+      return (
+        <div>
+          <Navbar />
+          <div className="container">
+            <Header title="Odds calculator:" />
+            <form onSubmit={this.handleSubmitCards} >
+              <div className="cards-input-box">
+                <label>Cards: </label>
+                <input type="text" name="cards" value={playerCards} onChange={this.handleCardsChange} className="cards-input"/>
+              </div>
+              <div>
+                <input type="submit" value="add cards" className="add-cards-btn"/>
+              </div>
+            </form>
+            <div>
+              {cardsArray.map((cards, index)=>{
+                return (
+                  <li key={`id=${index}`} className="add-player-card" >
+                    {cards}
+                  </li>
+                )
+              })}
+            </div>
+            <form onSubmit={this.handleSubmitBoard} >
+              <div className="cards-input-box">
+                <label>Board: </label>
+                <input type="text" name="board" value={board} onChange={this.handleBoardChange} className="cards-input"/>
+              </div>
+              <div>
+                <input type="submit" value="add board" className="add-cards-btn"/>
+              </div>
+            </form>
+            { showBoard ? <div className="add-player-card">{board}</div> : ''}
+            { oddsCalculated ? this.showResults(resultsArray) : '' }
+            <div className="end-game-btn-box">
+              <button onClick={this.getOdds}  className="get-odds-btn">GET ODDS</button>
+            </div>
+            { oddsCalculated ?  <div><button onClick={this.refreshPage} className="more-odds-btn">More</button></div> : '' }
+            
+            <div>
+              <button onClick={this.props.history.goBack} className="back-btn">Back</button>
+            </div>
           </div>
-          <div>
-            <input type="submit" value="add cards"/>
-          </div>
-        </form>
-        <div>
-          Cards:
         </div>
-        <div>
-          {cardsArray.map((cards, index)=>{
-            return (
-              <li key={`id=${index}`}>
-                {cards}
-              </li>
-            )
-          })}
-        </div>
-        <form onSubmit={this.handleSubmitBoard} >
-          <div >
-            <label>Board: </label>
-            <input type="text" name="board" value={board} onChange={this.handleBoardChange} />
-          </div>
-          <div>
-            <input type="submit" value="add board"/>
-          </div>
-        </form>
-          { showBoard ? <div><p>Board: {board}</p></div> : ''}
-        <div>
-          <button onClick={this.getOdds}  className="button">GET ODDS</button>
-        </div>
-        <div>
-        { oddsCalculated ? this.showResults(resultsArray) : '' }
-        </div>
-        <div>
-          <button onClick={this.props.history.goBack}>Back</button>
-        </div>
-      </div>
-    )
-  }
+      )
+    }
+  
 }
 
 export default OddCalculator;

@@ -95,6 +95,13 @@ p {
   border: 1px solid #fff
 }
 
+.back-btn {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  margin: 40px 0;
+}
+
 .underline {
 
 }
@@ -226,7 +233,7 @@ p {
 
 .odd-calc-link {
   margin-top: 200px;
-  border: 1px solid black;
+  text-align: center;
 }
 
 /* --- add players --- */
@@ -535,6 +542,58 @@ p {
   background-color: grey;
 }
 
+/* --- odd calculator --- */
 
+.cards-input-box {
+  display: flex;
+  flex-direction: column
+}
+
+.cards-input {
+  border: 1px solid;
+  height: 30px;
+  border-radius: 5px;
+  padding: 8px;
+  margin-top: 5px;
+  width: 150px;
+}
+
+.add-cards-btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  background-color: blue;
+  color: white;
+}
+
+.get-odds-btn {
+  background-color: red;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 35px 1px black;
+}
+
+.list-odds-result {
+  list-style: none;
+  padding: 5px;
+}
+
+.odds-result {
+  margin: 30px 0;
+  padding: 10px;
+}
+
+.odds-percent {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.more-odds-btn {
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+}
 
 
