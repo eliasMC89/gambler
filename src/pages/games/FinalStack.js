@@ -64,7 +64,7 @@ class FinalStack extends Component {
         <div className="container" >
           <Header title="Final stack"/>
           <form onSubmit={this.handleSubmitStack} className="playing-form" >
-            <input type="number" onChange={this.handleInputChange} className="playing-input" />
+            <input type="number" onChange={this.handleInputChange} className="playing-input" placeholder="0"/>
             <input type="submit" value="FinalStack" className="playing-submit-btn" />
           </form>
           { notEnoughPotError ? <h4 className="error-msg">Final stack incorrect!</h4> : ''}

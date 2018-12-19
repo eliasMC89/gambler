@@ -37,7 +37,7 @@ class CashRebuy extends Component {
       <div className="container" >
         <Header title="Rebuy:" />
         <form onSubmit={this.handleSubmitRebuy} className="playing-form">
-          <input type="number" onChange={this.handleInputChange} className="playing-input"/>
+          <input type="number" onChange={this.handleInputChange} className="playing-input" placeholder="0"/>
           <input type="submit" value="Rebuy" className="playing-submit-btn"/>
         </form>
         <div className="cancel-btn-box">

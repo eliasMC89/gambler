@@ -110,7 +110,7 @@ class AddPlayer extends Component {
           </div>
           <div className="add-buyin-box">
             <label>Buy in: </label>
-            <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
+            <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" placeholder="0"/>
           </div>
           <div className="add-player-btn-box">
             <input type="submit" value="+" className="add-player-btn"/>
