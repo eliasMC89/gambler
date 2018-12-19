@@ -639,6 +639,19 @@ p {
   border-radius: 10px;
 }
 
+.odds-instructions {
+  padding: 10px;
+  line-height: 25px;
+}
+
+.example-instructions {
+  font-size: 14px;
+}
+
+.odds-label {
+  font-weight: bold;
+}
+
 /* --- share game --- */
 
 .share-btn {

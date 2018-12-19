@@ -117,9 +117,15 @@ class OddCalculator extends Component {
           <Navbar />
           <div className="container">
             <Header title="Odds calculator:" />
+            <div className="odds-instructions">
+              <p>Select hands (two cards per hand):</p>
+              <p> · A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2</p>
+              <p> · Spades: s, Hearts: h, Clubs: c, Diamonds: d</p>
+              <p className="example-instructions">For example: Ace of spades: As</p>
+            </div>
             <form onSubmit={this.handleSubmitCards} >
               <div className="cards-input-box">
-                <label>Cards: </label>
+                <label className="odds-label">Cards: </label>
                 <input type="text" name="cards" value={playerCards} onChange={this.handleCardsChange} className="cards-input"/>
               </div>
               <div>
@@ -137,7 +143,7 @@ class OddCalculator extends Component {
             </div>
             <form onSubmit={this.handleSubmitBoard} >
               <div className="cards-input-box">
-                <label>Board: </label>
+                <label className="odds-label">Board: </label>
                 <input type="text" name="board" value={board} onChange={this.handleBoardChange} className="cards-input"/>
               </div>
               <div>
