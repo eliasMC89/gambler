@@ -21,10 +21,10 @@ class CashRebuy extends Component {
   handleSubmitRebuy = (event) => {
     event.preventDefault();
 
-    const finalStack = this.state.rebuy;
+    const rebuy = this.state.rebuy;
     const { id, playerId } = this.props.match.params;
 
-    cash.updateRebuy(id, playerId, finalStack)
+    cash.updateRebuy(id, playerId, rebuy)
       .then(()=>{
         this.props.history.push(`/cash-game/${id}/playing`);
       })
@@ -37,8 +37,7 @@ class CashRebuy extends Component {
       <div className="container" >
         <Header title="Rebuy:" />
         <form onSubmit={this.handleSubmitRebuy} className="playing-form">
-          {/* <label></label> */}
-          <input type="number" onChange={this.handleInputChange} className="playing-input"/>
+          <input type="number" onChange={this.handleInputChange} className="playing-input" placeholder="Rebuy"/>
           <input type="submit" value="Rebuy" className="playing-submit-btn"/>
         </form>
         <div className="cancel-btn-box">

@@ -124,6 +124,11 @@ p {
   margin-top: 20px;
 }
 
+.buyins-box {
+  display: flex;
+  margin-left: 15px;
+}
+
 /* ------- PAGES ------- */
 
 /* --- landing --- */
@@ -225,7 +230,7 @@ p {
 .error-msg {
   color: red;
   text-align: center;
-  margin: 0;
+  margin: 20px;
 }
 
 /* --- home --- */
@@ -330,6 +335,24 @@ p {
   border: 1px solid black;
   margin: 10px auto;
   border-radius: 10px;
+}
+
+.buyin-history {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.buyin-history li {
+  list-style: none;
+}
+
+.total-buyin-tag {
+  font-weight: bold;
+}
+
+.card-name-tag {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .finished-player {

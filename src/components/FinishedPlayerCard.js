@@ -12,6 +12,18 @@ class FinishedPlayerCard extends Component {
           <p>Total buy in: {player.buyin}</p>
           <p>Final Stack: {player.finalStack}</p>
         </div>
+        <div className="buyins-box">
+          <div className="summary-player-info">
+            <p>Buyins:</p>
+          </div >
+          <ul className="buyin-history">
+            {player.buyinHistory.map((buyin, index)=>{
+              return (
+                <li key={`id=${index}`} className="buyin-list"> + {buyin}</li>
+              )
+            })}
+          </ul>
+        </div>
         <div className="summary-player-win">
           <p>Wins: {player.finalStack - player.buyin}</p>
         </div>

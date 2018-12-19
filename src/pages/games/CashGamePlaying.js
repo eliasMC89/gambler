@@ -20,13 +20,19 @@ class CashGamePlaying extends Component {
     const { id } = this.props.match.params;
     cash.getDetail(id)
       .then((cashGame)=>{
-        this.setState({
-          currentPlayerList: cashGame.currentPlayerList,
-          pot: cashGame.pot,
-          remainingPot: cashGame.remainingPot,
-          playersRemainingError: false,
-          isLoading: false,
-        })
+        const { currentPlayerList, pot, remainingPot, isPlaying } = cashGame;
+        if(!isPlaying) {
+          this.props.history.push(`/cash-game/${id}/summary`)
+        } else {
+          console.log(cashGame);
+          this.setState({
+            currentPlayerList: currentPlayerList,
+            pot: pot,
+            remainingPot: remainingPot,
+            playersRemainingError: false,
+            isLoading: false,
+          })
+        }
       })
   }
 

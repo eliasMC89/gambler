@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import cash from '../../lib/cashGame-service';
 
-import Header from '../../components/Header';
-
 class CashGameInvitation extends Component {
 
   handleClickAccept = () => {
