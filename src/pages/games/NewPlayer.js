@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 import Header from '../../components/Header';
+import CancelButton from '../../components/CancelButton';
 
 class NewPlayer extends Component {
   
@@ -86,6 +87,9 @@ class NewPlayer extends Component {
                 <input type="submit" value="+" className="add-player-btn"/>
               </div>
             </form>
+            <div className="cancel-btn-box">
+              <CancelButton pageHistory={this.props.history} />
+            </div>
           </div>
       );
     }

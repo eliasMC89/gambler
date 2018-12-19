@@ -3,6 +3,7 @@ import cash from '../../lib/cashGame-service';
 import { withAuth } from '../../providers/AuthProvider';
 
 import Header from '../../components/Header';
+import CancelButton from '../../components/CancelButton';
 
 
 class AddPlayer extends Component {
@@ -109,6 +110,9 @@ class AddPlayer extends Component {
         </ul>
         <div className="start-btn-box">
           <button onClick={this.handleSubmitNewGame} className="start-btn">START</button>
+        </div>
+        <div className="cancel-btn-box">
+          <CancelButton pageHistory={this.props.history} />
         </div>
       </div>  
     );

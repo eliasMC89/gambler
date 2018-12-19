@@ -3,6 +3,7 @@ import auth from '../../lib/auth-service';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
+import CancelButton from '../../components/CancelButton';
 
 class SearchShareGame extends Component {
 
@@ -129,6 +130,9 @@ class SearchShareGame extends Component {
           </form>
           { foundPlayer.username ? this.showPlayer(foundPlayer.username) : ''}
           { notFoundPlayer ? <div><h4 className="error-msg">{errorMessage}</h4></div> : ''}
+          <div className="cancel-btn-box">
+            <CancelButton pageHistory={this.props.history} />
+          </div>
           
         </div>
       );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
+import CancelButton from '../../components/CancelButton';
 
 
 // edit player in cash-game: add rebuy
@@ -40,6 +41,9 @@ class CashRebuy extends Component {
           <input type="number" onChange={this.handleInputChange} className="playing-input"/>
           <input type="submit" value="Rebuy" className="playing-submit-btn"/>
         </form>
+        <div className="cancel-btn-box">
+          <CancelButton pageHistory={this.props.history} />
+        </div>
       </div>
     );
   }

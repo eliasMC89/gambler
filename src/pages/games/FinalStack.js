@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
+import CancelButton from '../../components/CancelButton';
 
 class FinalStack extends Component {
 
@@ -67,7 +68,9 @@ class FinalStack extends Component {
             <input type="submit" value="FinalStack" className="playing-submit-btn" />
           </form>
           { notEnoughPotError ? <h4 className="error-msg">Final stack incorrect!</h4> : ''}
-          
+          <div className="cancel-btn-box">
+            <CancelButton pageHistory={this.props.history} />
+          </div>
         </div>
       );
     }
