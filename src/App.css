@@ -439,6 +439,11 @@ p {
   margin-bottom: 40px;
 }
 
+.share-game-link {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 /* --- profile --- */
 
 .profile-header {
@@ -596,6 +601,8 @@ p {
   border-radius: 10px;
 }
 
+/* --- share game --- */
+
 .share-btn {
   background-color: blue;
   color: white;
@@ -617,6 +624,34 @@ p {
 
 .user-found-box {
   display: flex;
+  margin-bottom: 40px;
 }
 
+/* --- game invitation --- */
 
+.invitation-title {
+  margin-top: 40px;
+  line-height: 40px;
+}
+
+.invitation-btn {
+  padding: 15px;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.invitation-btn-box {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.accept-btn {
+  background-color: green;
+}
+
+.reject-btn {
+  background-color: red;
+}

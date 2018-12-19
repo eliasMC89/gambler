@@ -8,9 +8,32 @@ class SearchShareGame extends Component {
 
   state = {
     searchPlayer: '',
-    listPlayerNames: [],
     foundPlayer: {},
     notFoundPlayer: false,
+    errorMessage: '',
+    pendingOwners: [],
+    secondaryOwners: [],
+    myUsername: '',
+  }
+
+  componentDidMount () {
+    const { id } = this.props.match.params;
+
+    cash.getDetail(id)
+      .then((game)=>{
+        const { pendingOwners, secondaryOwners } = game;
+        this.setState({
+          pendingOwners,
+          secondaryOwners,
+        })
+      })
+    auth.me()
+      .then((user)=>{
+        const { username } = user;
+        this.setState({
+          myUsername: username,
+        })
+      })
   }
 
   handleNameChange = (event) => {  
@@ -22,42 +45,57 @@ class SearchShareGame extends Component {
 
   onSubmitSearch = (e) => {
     e.preventDefault();
-    const { searchPlayer } = this.state;
+    const { searchPlayer, myUsername } = this.state;
 
-    auth.search(searchPlayer)
-      .then((user)=>{
-        if (user){
-          this.setState({
-            searchPlayer: '',
-            foundPlayer: user,
-            notFoundPlayer: false,
-          })
-        } else {
-          this.setState({
-            searchPlayer: '',
-            foundPlayer: '',
-            notFoundPlayer: true,
-          })
-        }
+    if (searchPlayer === myUsername) {
+      this.setState({
+        searchPlayer: '',
+        foundPlayer: '',
+        notFoundPlayer: true,
+        errorMessage: "Can't share with yourself!"
       })
-      .catch((error)=>{
-        console.log(error)
-      })
+    } else {
+      auth.search(searchPlayer)
+        .then((user)=>{
+          if (user){
+            this.setState({
+              searchPlayer: '',
+              foundPlayer: user,
+              notFoundPlayer: false,
+            })
+          } else {
+            this.setState({
+              searchPlayer: '',
+              foundPlayer: '',
+              notFoundPlayer: true,
+              errorMessage: 'Wrong username!',
+            })
+          }
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+    }
+
 
   }
 
   handleClickShare = () => {
     // make post to add user id in pending owners
     const { id } = this.props.match.params;
-    const { foundPlayer } = this.state;
+    const { foundPlayer, pendingOwners, secondaryOwners } = this.state;
     
-    cash.shareGame(id, foundPlayer._id)
-      .then((res)=>{
-        this.props.history.goBack();
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
+    if (pendingOwners.includes(foundPlayer._id) || secondaryOwners.includes(foundPlayer._id)) {
+      this.props.history.goBack(); 
+    } else {
+      cash.shareGame(id, foundPlayer._id)
+        .then((res)=>{
+          this.props.history.goBack();
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+    }
   }
 
   showPlayer = (username) => {
@@ -71,7 +109,7 @@ class SearchShareGame extends Component {
 
 
   render() {
-    const { searchPlayer, foundPlayer, notFoundPlayer } = this.state;
+    const { searchPlayer, foundPlayer, notFoundPlayer, errorMessage } = this.state;
     return (
       <div className="container">
         <Header title="Search user:"/>
@@ -84,7 +122,7 @@ class SearchShareGame extends Component {
           </div>
         </form>
         { foundPlayer.username ? this.showPlayer(foundPlayer.username) : ''}
-        { notFoundPlayer ? <div><h4 className="error-msg">Player not exists!</h4></div> : ''}
+        { notFoundPlayer ? <div><h4 className="error-msg">{errorMessage}</h4></div> : ''}
         
       </div>
     );

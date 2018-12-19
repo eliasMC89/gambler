@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {CardGroup, OddsCalculator} from 'poker-odds-calculator';
+import { CardGroup, OddsCalculator } from 'poker-odds-calculator';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 

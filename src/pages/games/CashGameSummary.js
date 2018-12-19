@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
 import { Link } from 'react-router-dom';
+import auth from '../../lib/auth-service';
 
 import Header from '../../components/Header';
 import SummaryPlayerCard from '../../components/SummaryPlayerCard';
@@ -8,6 +9,9 @@ import SummaryPlayerCard from '../../components/SummaryPlayerCard';
 class CashGameSummary extends Component {
 
   state = {
+    currentUser: '',
+    owner: '',
+    secondaryOwners: [],
     playerList: [],
     pot: 0,
     startDate: '',
@@ -19,25 +23,44 @@ class CashGameSummary extends Component {
     const { id } = this.props.match.params;
     cash.getDetail(id)
       .then((cashGame)=>{
-        const { currentPlayerList, pot, startDate, endDate } = cashGame;
+        const { owner, currentPlayerList, pot, startDate, endDate } = cashGame;
         const duration = Date.parse(endDate) - Date.parse(startDate);
 
         this.setState({
+          owner,
           playerList: currentPlayerList,
           pot,
           startDate,
           duration
         })
       })
+    auth.me()
+      .then((user)=>{
+        this.setState({
+          currentUser: user._id,
+        })
+      })
+    
+    
+
   }
 
   handleDeleteGame = () => {
     const { id } = this.props.match.params;
+    const { currentUser, owner } = this.state;
+
+    if (owner === currentUser) {
+      cash.deleteGame(id)
+        .then(()=>{
+          this.props.history.push('/profile/my-games')
+        })
+    } else {
+      cash.deleteSharedGame(id)
+        .then(()=>{
+          this.props.history.push('/profile/my-games')
+        })
+    }
     
-    cash.deleteGame(id)
-      .then(()=>{
-        this.props.history.push('/profile/my-games')
-      })
   }
 
   msToTime = (duration) => {
@@ -69,7 +92,7 @@ class CashGameSummary extends Component {
         <div className="done-link-box">
           <Link to="/home" className="done-game-link">DONE</Link>
         </div>
-        <div>
+        <div className="share-game-link">
           <Link to={`/cash-game/${id}/share`} >Share game</Link>
         </div>
         <div className="delete-game-btn-box">

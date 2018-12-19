@@ -21,6 +21,13 @@ class CashGameService {
       })
   }
 
+  getMySharedGames () {
+    return this.cash.get('/cash-game/my-shared-games')
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
   getDetail(id) {
     return this.cash.get(`/cash-game/${id}`)
       .then((res) => {
@@ -63,12 +70,34 @@ class CashGameService {
       })
   }
 
+  deleteSharedGame(id) {
+    return this.cash.put(`/cash-game/${id}/delete-shared`)
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
   shareGame (gameId, shareUserId) {
     return this.cash.put(`/cash-game/${gameId}/share/${shareUserId}`)
       .then((res)=>{
         return res.data;
       })
   }
+
+  acceptSharedGame (gameId) {
+    return this.cash.put(`/cash-game/${gameId}/new-owner`)
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
+  rejectSharedGame (gameId) {
+    return this.cash.put(`/cash-game/${gameId}/reject-share`)
+      .then((res)=>{
+        return res.data;
+      })
+  }
+
 }
 
 const cashGameService = new CashGameService();

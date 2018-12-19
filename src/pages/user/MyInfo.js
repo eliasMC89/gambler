@@ -26,6 +26,9 @@ class MyInfo extends Component {
         <div className="my-games-btn-box">
           <Link to="/profile/my-games" className="my-games-link">My Games</Link>
         </div>
+        <div className="my-games-btn-box">
+          <Link to="/profile/my-shared-games" className="my-games-link">Pending games</Link>
+        </div>
         <div>
           <Link to="/home" className="backhome-link">Back home</Link>
         </div>

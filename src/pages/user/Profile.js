@@ -5,6 +5,7 @@ import PrivateRoute from '../../components/PrivateRoute';
 import MyGames from './MyGames';
 import MyInfo from './MyInfo';
 import Navbar from '../../components/Navbar';
+import MySharedGames from './MySharedGames';
 
 class Profile extends Component {
   render() {
@@ -15,6 +16,7 @@ class Profile extends Component {
         <Switch>
           <PrivateRoute exact path={`${match.path}/my-info`} component={MyInfo} />
           <PrivateRoute path={`${match.path}/my-games`} component={MyGames} />
+          <PrivateRoute path={`${match.path}/my-shared-games`} component={MySharedGames} />
         </Switch>
       </div>
     );
