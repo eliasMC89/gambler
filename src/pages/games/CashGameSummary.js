@@ -17,6 +17,7 @@ class CashGameSummary extends Component {
     startDate: '',
     endDate: '',
     duration: '',
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -33,13 +34,15 @@ class CashGameSummary extends Component {
           startDate,
           duration
         })
+        auth.me()
+          .then((user)=>{
+            this.setState({
+              currentUser: user._id,
+              isLoading: false,
+            })
+          })
       })
-    auth.me()
-      .then((user)=>{
-        this.setState({
-          currentUser: user._id,
-        })
-      })
+    
     
     
 
@@ -77,30 +80,34 @@ class CashGameSummary extends Component {
   }
 
   render() {
-    const { id } = this.props.match.params;
-    const { playerList, pot, duration } = this.state;
-    return (
-      <div className="container">
-        <Header title="Game summary:" />
-        <h3>Total pot: {pot}</h3>
-        <p>Duration: {this.msToTime(duration)}</p>
-        <ul className="player-list">
-          {playerList.map((player)=>{
-            return <SummaryPlayerCard key={`id=${player._id}`} player={player} />
-          })}
-        </ul>
-        <div className="done-link-box">
-          <Link to="/home" className="done-game-link">DONE</Link>
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+      const { id } = this.props.match.params;
+      const { playerList, pot, duration } = this.state;
+      return (
+        <div className="container">
+          <Header title="Game summary:" />
+          <h3>Total pot: {pot}</h3>
+          <p>Duration: {this.msToTime(duration)}</p>
+          <ul className="player-list">
+            {playerList.map((player)=>{
+              return <SummaryPlayerCard key={`id=${player._id}`} player={player} />
+            })}
+          </ul>
+          <div className="done-link-box">
+            <Link to="/home" className="done-game-link">DONE</Link>
+          </div>
+          <div className="share-game-link">
+            <Link to={`/cash-game/${id}/share`} >Share game</Link>
+          </div>
+          <div className="delete-game-btn-box">
+            <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+          </div>
+          
         </div>
-        <div className="share-game-link">
-          <Link to={`/cash-game/${id}/share`} >Share game</Link>
-        </div>
-        <div className="delete-game-btn-box">
-          <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
-        </div>
-        
-      </div>
-    );
+      );
+    }
   }
 }
 

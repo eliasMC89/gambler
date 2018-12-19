@@ -14,6 +14,7 @@ class SearchShareGame extends Component {
     pendingOwners: [],
     secondaryOwners: [],
     myUsername: '',
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -26,14 +27,16 @@ class SearchShareGame extends Component {
           pendingOwners,
           secondaryOwners,
         })
+        auth.me()
+          .then((user)=>{
+            const { username } = user;
+            this.setState({
+              myUsername: username,
+              isLoading: false,
+            })
       })
-    auth.me()
-      .then((user)=>{
-        const { username } = user;
-        this.setState({
-          myUsername: username,
-        })
       })
+    
   }
 
   handleNameChange = (event) => {  
@@ -109,23 +112,27 @@ class SearchShareGame extends Component {
 
 
   render() {
-    const { searchPlayer, foundPlayer, notFoundPlayer, errorMessage } = this.state;
-    return (
-      <div className="container">
-        <Header title="Search user:"/>
-        <form onSubmit={this.onSubmitSearch} className="user-found-box">
-          <div className="add-name-box">
-            <input type="text" name="name" value={searchPlayer} onChange={this.handleNameChange} className="add-name-input" placeholder="Search user"/>
-          </div>
-          <div className="add-player-btn-box">
-            <input type="submit" value="Search" className="search-btn"/>
-          </div>
-        </form>
-        { foundPlayer.username ? this.showPlayer(foundPlayer.username) : ''}
-        { notFoundPlayer ? <div><h4 className="error-msg">{errorMessage}</h4></div> : ''}
-        
-      </div>
-    );
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+      const { searchPlayer, foundPlayer, notFoundPlayer, errorMessage } = this.state;
+      return (
+        <div className="container">
+          <Header title="Search user:"/>
+          <form onSubmit={this.onSubmitSearch} className="user-found-box">
+            <div className="add-name-box">
+              <input type="text" name="name" value={searchPlayer} onChange={this.handleNameChange} className="add-name-input" placeholder="Search user"/>
+            </div>
+            <div className="add-player-btn-box">
+              <input type="submit" value="Search" className="search-btn"/>
+            </div>
+          </form>
+          { foundPlayer.username ? this.showPlayer(foundPlayer.username) : ''}
+          { notFoundPlayer ? <div><h4 className="error-msg">{errorMessage}</h4></div> : ''}
+          
+        </div>
+      );
+    }
   }
 }
 

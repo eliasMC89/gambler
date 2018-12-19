@@ -9,6 +9,7 @@ class NewPlayer extends Component {
     currentPlayerName: '',
     currentPlayerBuyIn: 0,
     emptyInput: false,
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -16,9 +17,9 @@ class NewPlayer extends Component {
     cash.getDetail(id)
       .then((cashGame)=>{
         const { currentPlayerList } = cashGame;
-  
         this.setState({
           currentPlayerList,
+          isLoading: false,
         })
       })
     }
@@ -64,26 +65,30 @@ class NewPlayer extends Component {
   }
 
   render() {
-    const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
-    return (
-        <div className="container">
-          <Header title="New player:" />
-          { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
-          <form onSubmit={this.handleNewPlayer} className="add-player-form">
-            <div className="add-name-box">
-              <label>Name: </label>
-              <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
-            </div>
-            <div className="add-buyin-box">
-              <label>Buy in: </label>
-              <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
-            </div>
-            <div className="add-player-btn-box">
-              <input type="submit" value="+" className="add-player-btn"/>
-            </div>
-          </form>
-        </div>
-    );
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+      const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
+      return (
+          <div className="container">
+            <Header title="New player:" />
+            { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
+            <form onSubmit={this.handleNewPlayer} className="add-player-form">
+              <div className="add-name-box">
+                <label>Name: </label>
+                <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
+              </div>
+              <div className="add-buyin-box">
+                <label>Buy in: </label>
+                <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
+              </div>
+              <div className="add-player-btn-box">
+                <input type="submit" value="+" className="add-player-btn"/>
+              </div>
+            </form>
+          </div>
+      );
+    }
   }
 }
 

@@ -9,6 +9,7 @@ class MySharedGames extends Component {
 
   state = {
     mySharedGames: [],
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -16,30 +17,35 @@ class MySharedGames extends Component {
       .then((games)=>{
         this.setState({
           mySharedGames: games,
+          isLoading: false,
         })
       })
     
   }
 
   render() {
-    const { mySharedGames } = this.state;
-    return (
-      <div className="container">
-        <Header title="Shared games:"/>
-        <ul className="game-list">
-          {mySharedGames.map((game)=>{
-            return(
-              <li key={`${game._id}`}>
-                <Link to={`/cash-game/${game._id}/invitation`} className="game-link"><CashGameCard game={game} class="is-not-playing" /></Link>
-              </li>
-            )
-          })}
-        </ul>
-        <div className="backprofile-box">
-          <Link to="/profile/my-info" className="backhome-link">Back to profile</Link>
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+      const { mySharedGames } = this.state;
+      return (
+        <div className="container">
+          <Header title="Shared games:"/>
+          <ul className="game-list">
+            {mySharedGames.map((game)=>{
+              return(
+                <li key={`${game._id}`}>
+                  <Link to={`/cash-game/${game._id}/invitation`} className="game-link"><CashGameCard game={game} class="is-not-playing" /></Link>
+                </li>
+              )
+            })}
+          </ul>
+          <div className="backprofile-box">
+            <Link to="/profile/my-info" className="backhome-link">Back to profile</Link>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

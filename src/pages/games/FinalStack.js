@@ -9,6 +9,7 @@ class FinalStack extends Component {
     finalStack: 0,
     remainingPot: 0,
     notEnoughPotError: false,
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -17,6 +18,7 @@ class FinalStack extends Component {
       .then((cashGame)=>{
         this.setState({
           remainingPot: cashGame.remainingPot,
+          isLoading: false,
         })
       })
   }
@@ -53,18 +55,22 @@ class FinalStack extends Component {
   }
 
   render() {
-    const { notEnoughPotError } = this.state;
-    return (
-      <div className="container" >
-        <Header title="Final stack"/>
-        <form onSubmit={this.handleSubmitStack} className="playing-form" >
-          <input type="number" onChange={this.handleInputChange} className="playing-input" />
-          <input type="submit" value="FinalStack" className="playing-submit-btn" />
-        </form>
-        { notEnoughPotError ? <h4 className="error-msg">Final stack incorrect!</h4> : ''}
-        
-      </div>
-    );
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+      const { notEnoughPotError } = this.state;
+      return (
+        <div className="container" >
+          <Header title="Final stack"/>
+          <form onSubmit={this.handleSubmitStack} className="playing-form" >
+            <input type="number" onChange={this.handleInputChange} className="playing-input" />
+            <input type="submit" value="FinalStack" className="playing-submit-btn" />
+          </form>
+          { notEnoughPotError ? <h4 className="error-msg">Final stack incorrect!</h4> : ''}
+          
+        </div>
+      );
+    }
   }
 }
 

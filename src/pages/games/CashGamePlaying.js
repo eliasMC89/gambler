@@ -13,6 +13,7 @@ class CashGamePlaying extends Component {
     pot: 0,
     remainingPot: 0,
     playersRemainingError: false,
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -24,6 +25,7 @@ class CashGamePlaying extends Component {
           pot: cashGame.pot,
           remainingPot: cashGame.remainingPot,
           playersRemainingError: false,
+          isLoading: false,
         })
       })
   }
@@ -52,33 +54,37 @@ class CashGamePlaying extends Component {
   }
 
   render() {
-    const { id } = this.props.match.params;
-    const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;
-    return (
-      <div className="container">
-        <Header title="Game playing:" />
-        <ul className="player-list" >
-          {currentPlayerList.map((player)=>{
-            if (player.isPlaying){
-              return <CurrentPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
-            } else {
-              return <FinishedPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
-            }
-          })}
-        </ul>
-        <div>
-          <Link to={`/cash-game/${id}/new-player`} >Add player</Link>
-        </div>
-        <div className="playing-pot-box">
-          <h3 className="playing-pot">Pot: {pot} $</h3>
-          <h4>(Remaining pot: {remainingPot})</h4>
-        </div>
-        <div className="end-game-btn-box">
-          <button onClick={this.handleEndGame} className="end-game-btn">END GAME</button>
-        </div>
-        { playersRemainingError ? <h4 className="error-msg">Players still playing!</h4> : ''}
-      </div>
-    );
+    if (this.state.isLoading){
+      return <h1>Loading...</h1>
+    } else {
+        const { id } = this.props.match.params;
+        const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;
+        return (
+          <div className="container">
+            <Header title="Game playing:" />
+            <ul className="player-list" >
+              {currentPlayerList.map((player)=>{
+                if (player.isPlaying){
+                  return <CurrentPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
+                } else {
+                  return <FinishedPlayerCard player={player} gameId={id} key={`id=${player._id}`}/>
+                }
+              })}
+            </ul>
+            <div>
+              <Link to={`/cash-game/${id}/new-player`} >Add player</Link>
+            </div>
+            <div className="playing-pot-box">
+              <h3 className="playing-pot">Pot: {pot} $</h3>
+              <h4>(Remaining pot: {remainingPot})</h4>
+            </div>
+            <div className="end-game-btn-box">
+              <button onClick={this.handleEndGame} className="end-game-btn">END GAME</button>
+            </div>
+            { playersRemainingError ? <h4 className="error-msg">Players still playing!</h4> : ''}
+          </div>
+        )
+    }
   }
 }
 

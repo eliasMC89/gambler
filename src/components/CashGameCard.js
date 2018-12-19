@@ -8,6 +8,7 @@ class CashGameCard extends Component {
     numPlayers: 0,
     pot: 0,
     isPlaying: true,
+    isLoading: true,
   }
 
   componentDidMount () {
@@ -22,6 +23,7 @@ class CashGameCard extends Component {
       numPlayers,
       pot,
       isPlaying,
+      isLoading: false,
     })
   }
 
@@ -43,21 +45,26 @@ class CashGameCard extends Component {
   }
 
   render() {
-    const { isPlaying } = this.state;
-    const { game } = this.props;
-    return (
-      <div className={`game-card-container ${this.props.class}`}>
-        <div className="first-line-game-info">
-          <p>{this.msToDate(Date.parse(game.startDate))}</p>
-          <p><span className="pot-info">Pot: {game.pot}</span></p>
-        </div>
-        <div className="second-line-game-info">
-        { isPlaying ? '' : <p>Duration: {this.msToTime(this.state.duration)}</p>}
-          
-          <p>Players: {game.currentPlayerList.length}</p>
-        </div>
-      </div>
-    );
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>
+    } else {
+        const { isPlaying } = this.state;
+        const { game } = this.props;
+        return (
+          <div className={`game-card-container ${this.props.class}`}>
+            <div className="first-line-game-info">
+              <p>{this.msToDate(Date.parse(game.startDate))}</p>
+              <p><span className="pot-info">Pot: {game.pot}</span></p>
+            </div>
+            <div className="second-line-game-info">
+            { isPlaying ? '' : <p>Duration: {this.msToTime(this.state.duration)}</p>}
+              
+              <p>Players: {game.currentPlayerList.length}</p>
+            </div>
+          </div>
+      )
+    
+    }
   }
 }
 
