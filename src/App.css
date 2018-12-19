@@ -21,7 +21,7 @@ body {
   color: #111;
   font-family: 'Lato';
   line-height: 147%;
-  background-color: #FDFFFF;
+  background-color: #F7F7F7;
 }
 
 h1 {}
@@ -85,6 +85,31 @@ p {
   width: 30px;
 }
 
+.menu-btn {
+  margin-right: 8px;
+  text-align: right;
+  padding-top: 10px;
+}
+
+.menu-img {
+  height: 35px;
+}
+
+.nav-menu {
+  background-color: #D6D6D6;
+  padding: 15px;
+  line-height: 40px;
+  list-style: none;
+}
+
+.menu-box {
+  text-align: right;
+  background-color: #D6D6D6;
+}
+
+.hide-menu-btn {
+  color: #570000;
+}
 
 /* ---- components ---- */
 
@@ -244,11 +269,11 @@ p {
 
 .newgame-link {
   padding: 30px;
-  background-color: red;
+  background-color: #8C0000;
   text-decoration: none;
   border-radius: 10px;
   color: white;
-  box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 
 .odd-calc-link {
