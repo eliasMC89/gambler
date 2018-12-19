@@ -116,7 +116,7 @@ class OddCalculator extends Component {
         <div>
           <Navbar />
           <div className="container">
-            <Header title="Odds calculator:" />
+            <Header title="Odds calculator" />
             <div className="odds-instructions">
               <p>Select hands (two cards per hand):</p>
               <p> · A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2</p>

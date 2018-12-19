@@ -57,9 +57,13 @@ p {
 /* --- navbar --- */
 
 .navbar {
-  height: 50px;
+  height: 56px;
   display: flex;
   justify-content: space-between;
+  /* overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%; */
 }
 
 .nav-link {
@@ -96,15 +100,26 @@ p {
 }
 
 .nav-menu {
-  background-color: #D6D6D6;
+  background-color: #EAEAEA;
   padding: 15px;
   line-height: 40px;
   list-style: none;
 }
 
+.menu-option {
+  padding-left: 45px;
+  line-height: 45px;
+  color: #570000;
+}
+
+.menu-link {
+  text-decoration: none;
+}
+
 .menu-box {
   text-align: right;
-  background-color: #D6D6D6;
+  background-color: #EAEAEA;
+  z-index: 999;
 }
 
 .hide-menu-btn {
@@ -127,21 +142,14 @@ p {
   margin: 40px 0;
 }
 
-.underline {
-
-}
-
 .player-list {
   padding: 0;
 }
 
 .cancel-btn {
-  padding: 5px;
-  background-color: black;
-  color: white;
   margin: 20px;
-  border-radius: 10px;
-  border: 1px solid black;
+  text-underline-position: auto;
+  text-decoration: underline;
 }
 
 .cancel-btn-box {
@@ -191,9 +199,10 @@ p {
 
 .li-su-input {
   border-bottom: solid;
-  border-top: white;
-  border-right: white;
-  border-left: white;
+  border-top: #F7F7F7;
+  border-right: #F7F7F7;
+  border-left: #F7F7F7;
+  background-color: #F7F7F7;
   height: 30px;
   padding: 10px;
 }
@@ -206,7 +215,7 @@ p {
   margin-top: 100px;
   border: 2px solid black;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 1px #8C0000;
+  box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
 }
 
 .li-su-title {
@@ -231,12 +240,14 @@ p {
 }
 
 .li-su-btn {
-  height: 35px;
-  width: 80px;
   background-color: #8C0000;
   border-radius: 10px;
   font-size: 15px;
   color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: 1px solid #8C0000;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .to-su-li {
@@ -273,7 +284,7 @@ p {
   text-decoration: none;
   border-radius: 10px;
   color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 51px -6px rgba(0,0,0,0.75);
 }
 
 .odd-calc-link {
@@ -319,7 +330,7 @@ p {
   padding: 8px;
 }
 
-.add-player-btn {
+/* .add-player-btn {
   border: 1px solid black;
   margin-top: 28px;
   height: 30px;
@@ -328,16 +339,20 @@ p {
   font-size: 25px;
   background-color: red;
   color: white;
+} */
+
+.add-player-img {
+  height: 35px;
+  margin-top: 22px;
 }
 
 .start-btn {
-  border: 1px solid black;
-  height: 30px;
-  width: 100px;
   border-radius: 10px;
-  box-shadow: 0px 0px 35px 1px rgba(168,15,71,1);
-  background-color: red;
+  background-color: #570000;
   color: white;
+  font-weight: bold;
+  border: 1px solid #570000;
+  padding: 10px 20px;
 }
 
 .start-btn-box {
@@ -361,6 +376,8 @@ p {
   border: 1px solid black;
   margin: 10px auto;
   border-radius: 10px;
+  background-color: #E5E5E5;
+  box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
 }
 
 .buyin-history {
@@ -378,16 +395,18 @@ p {
 
 .card-name-tag {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .finished-player {
-  background-color: grey;
+  background-color: #280000;
+  color: white;
 }
 
 .current-player-info {
   padding: 5px;
   padding-left: 10px;
+  margin-top: 8px;
 }
 
 .current-player-link {
@@ -400,15 +419,19 @@ p {
 
 .current-player-buttons {
   margin: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .rebuy-btn {
-  background-color: green;
+  background-color: #01172F;
+  padding: 8px 15px;
+  font-weight: bold;
 }
 
 .final-stack-btn {
-  background-color: red;
+  background-color: #8C0000;
+  padding: 8px 15px;
+  font-weight: bold;
 }
 
 .end-game-btn-box {
@@ -417,17 +440,31 @@ p {
 }
 
 .end-game-btn {
-  text-decoration: none;
-  background-color: black;
-  color: white;
-  padding: 8px;
-  border: 1px solid black;
   border-radius: 10px;
-  box-shadow: 0px 0px 35px 1px black;
+  background-color: #570000;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #570000;
+  padding: 10px 20px;
 }
 
 .playing-pot {
-  margin: 25px 15px;
+  margin: 35px 20px;
+  font-size: 35px
+}
+
+.remaining-pot {
+  margin: 0 20px 40px;
+}
+
+.new-player-link {
+  color: #570000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.new-player-box {
+  margin: 30px 10px;
 }
 
 /* --- rebuy & final stack --- */
@@ -446,11 +483,12 @@ p {
 }
 
 .playing-submit-btn {
-  background-color: red;
-  height: 50px;
+  background-color: #8C0000;
   margin: 10px;
   border-radius: 10px;
   color: white;
+  padding: 10px 15px;
+  font-weight: bold;
 }
 
 /* --- game summary --- */
@@ -479,6 +517,14 @@ p {
   font-weight: bold;
   text-align: center;
   padding: 10px;
+}
+
+.total-win {
+  font-size: 30px;
+}
+
+.summary-total-pot {
+  font-size: 25px;
 }
 
 .done-link-box {
@@ -512,14 +558,6 @@ p {
 
 .profile-header {
   display: flex;
-}
-
-.logout-btn-box {
-  text-align: right;
-}
-
-.logout-btn {
-  text-decoration: none;
 }
 
 .my-games-btn-box {

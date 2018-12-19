@@ -36,9 +36,10 @@ class Navbar extends Component {
           <button onClick={this.handleClickMenu} className="hide-menu-btn">Hide</button>
         </div>
         <ul className="nav-menu">
-          <li>My info</li>
-          <li>Odds calculator</li>
-          <li>My games</li>
+          <Link to="/profile/my-info" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My profile</li></Link>
+          <Link to="/profile/my-games" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My games</li></Link>
+          <Link to="/odds-calculator" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Odds calculator</li></Link>
+          <Link to="/" onClick={this.props.logout} className="menu-link"><li className="menu-option">Logout</li></Link>
         </ul>
       </div>
     )
@@ -50,9 +51,6 @@ class Navbar extends Component {
       <div className="home-link">
         <Link to="/home" className="nav-link"><img src={require('./trebol-poker.png')} alt="logo" className="navbar-logo"/></Link>
       </div>
-      {/* <div className="profile-link">
-        <Link to="/profile/my-info" className="nav-link">{this.props.user.username}</Link>
-      </div> */}
       { this.state.isShowMenu ? this.showMenu() : this.notShowMenu()}
     </div>
     )

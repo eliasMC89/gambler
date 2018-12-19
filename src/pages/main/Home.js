@@ -10,10 +10,6 @@ class Home extends Component {
         <div className="newgame-btn">
           <Link to="/cash-game/add-players" className="newgame-link">NEW GAME</Link>
         </div>
-        <div className="odd-calc-link" >
-          <Link to="/odds-calculator" >Odds calculator</Link>
-        </div>
-        
       </div>
     )
   }

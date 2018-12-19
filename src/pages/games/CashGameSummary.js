@@ -87,8 +87,8 @@ class CashGameSummary extends Component {
       const { playerList, pot, duration } = this.state;
       return (
         <div className="container">
-          <Header title="Game summary:" />
-          <h3>Total pot: {pot}</h3>
+          <Header title="Game summary" />
+          <h3 className="summary-total-pot">Total pot: {pot}</h3>
           <p>Duration: {this.msToTime(duration)}</p>
           <ul className="player-list">
             {playerList.map((player)=>{

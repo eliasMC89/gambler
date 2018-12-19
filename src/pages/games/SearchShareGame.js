@@ -119,7 +119,7 @@ class SearchShareGame extends Component {
       const { searchPlayer, foundPlayer, notFoundPlayer, errorMessage } = this.state;
       return (
         <div className="container">
-          <Header title="Search user:"/>
+          <Header title="Search user"/>
           <form onSubmit={this.onSubmitSearch} className="user-found-box">
             <div className="add-name-box">
               <input type="text" name="name" value={searchPlayer} onChange={this.handleNameChange} className="add-name-input" placeholder="Search user"/>

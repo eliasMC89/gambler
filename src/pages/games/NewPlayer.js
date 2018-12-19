@@ -73,7 +73,7 @@ class NewPlayer extends Component {
       const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
       return (
           <div className="container">
-            <Header title="New player:" />
+            <Header title="New player" />
             { emptyInput ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
             <form onSubmit={this.handleNewPlayer} className="add-player-form">
               <div className="add-name-box">

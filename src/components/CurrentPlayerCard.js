@@ -23,7 +23,7 @@ class CurrentPlayerCard extends Component {
         </div>
         <div className="current-player-buttons">
           <Link to={`/cash-game/${gameId}/rebuy/${player._id}`} className="current-player-link rebuy-btn" >Rebuy</Link>
-          <Link to={`/cash-game/${gameId}/final-stack/${player._id}`} className="current-player-link final-stack-btn" >Final Stack</Link>
+          <Link to={`/cash-game/${gameId}/final-stack/${player._id}`} className="current-player-link final-stack-btn" >Quit</Link>
         </div>
       </li>
     );

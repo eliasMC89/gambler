@@ -67,7 +67,7 @@ class CashGamePlaying extends Component {
         const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;
         return (
           <div className="container">
-            <Header title="Game playing:" />
+            <Header title="Game playing" />
             <ul className="player-list" >
               {currentPlayerList.map((player)=>{
                 if (player.isPlaying){
@@ -77,17 +77,17 @@ class CashGamePlaying extends Component {
                 }
               })}
             </ul>
-            <div>
-              <Link to={`/cash-game/${id}/new-player`} >Add player</Link>
+            <div className="new-player-box">
+              <Link to={`/cash-game/${id}/new-player`} className="new-player-link">Add player</Link>
             </div>
             <div className="playing-pot-box">
               <h3 className="playing-pot">Pot: {pot} $</h3>
-              <h4>(Remaining pot: {remainingPot})</h4>
+              <h4 className="remaining-pot">(Remaining: {remainingPot})</h4>
             </div>
+            { playersRemainingError ? <h4 className="error-msg">Players still playing!</h4> : ''}
             <div className="end-game-btn-box">
               <button onClick={this.handleEndGame} className="end-game-btn">END GAME</button>
             </div>
-            { playersRemainingError ? <h4 className="error-msg">Players still playing!</h4> : ''}
           </div>
         )
     }

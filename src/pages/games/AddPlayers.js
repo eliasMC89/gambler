@@ -102,8 +102,8 @@ class AddPlayer extends Component {
     const { currentPlayerList, emptyInputError, currentPlayerName, currentPlayerBuyIn, noPlayersError, negativeBuyinError } = this.state;
     return (
       <div className="container">
-        <Header title="Players:" />
-        <form onSubmit={this.handleSubmitPlayer} className="add-player-form">
+        <Header title="Players" />
+        <form className="add-player-form">
           <div className="add-name-box">
             <label>Name: </label>
             <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" placeholder="Player name"/>
@@ -113,7 +113,7 @@ class AddPlayer extends Component {
             <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" placeholder="0"/>
           </div>
           <div className="add-player-btn-box">
-            <input type="submit" value="+" className="add-player-btn"/>
+            <button onClick={this.handleSubmitPlayer} ><img src={require('./add-square-button.png')} alt="add" className="add-player-img"/></button>
           </div>
         </form>
         { emptyInputError ? <h4 className="error-msg">Fill in the fields!</h4> : ''}

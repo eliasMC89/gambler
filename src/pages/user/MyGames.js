@@ -30,7 +30,7 @@ class MyGames extends Component {
       const { myGames } = this.state;
       return (
         <div className="container">
-          <Header title="My games:"/>
+          <Header title="My games"/>
           <ul className="game-list">
             {myGames.map((game)=>{
               if (game.isPlaying) {

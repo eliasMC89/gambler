@@ -30,7 +30,7 @@ class MySharedGames extends Component {
       const { mySharedGames } = this.state;
       return (
         <div className="container">
-          <Header title="Shared games:"/>
+          <Header title="Shared games"/>
           <ul className="game-list">
             {mySharedGames.map((game)=>{
               return(
