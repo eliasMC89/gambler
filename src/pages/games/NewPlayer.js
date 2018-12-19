@@ -56,6 +56,7 @@ class NewPlayer extends Component {
       buyin: currentPlayerBuyIn,
       finalStack: 0,
       isPlaying: true,
+      buyinHistory: [currentPlayerBuyIn],
     }
     newCurrentPlayerList.push(newPlayer);
     // update game here!! and redirect to playing
@@ -77,7 +78,7 @@ class NewPlayer extends Component {
             <form onSubmit={this.handleNewPlayer} className="add-player-form">
               <div className="add-name-box">
                 <label>Name: </label>
-                <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
+                <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" placeholder="Player name"/>
               </div>
               <div className="add-buyin-box">
                 <label>Buy in: </label>

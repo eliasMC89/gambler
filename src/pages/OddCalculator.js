@@ -126,7 +126,7 @@ class OddCalculator extends Component {
             <form onSubmit={this.handleSubmitCards} >
               <div className="cards-input-box">
                 <label className="odds-label">Cards: </label>
-                <input type="text" name="cards" value={playerCards} onChange={this.handleCardsChange} className="cards-input"/>
+                <input type="text" name="cards" value={playerCards} onChange={this.handleCardsChange} className="cards-input" placeholder="e.g. AsKs"/>
               </div>
               <div>
                 <input type="submit" value="add cards" className="add-cards-btn"/>
@@ -144,7 +144,7 @@ class OddCalculator extends Component {
             <form onSubmit={this.handleSubmitBoard} >
               <div className="cards-input-box">
                 <label className="odds-label">Board: </label>
-                <input type="text" name="board" value={board} onChange={this.handleBoardChange} className="cards-input"/>
+                <input type="text" name="board" value={board} onChange={this.handleBoardChange} className="cards-input" placeholder="e.g. JcQd10h"/>
               </div>
               <div>
                 <input type="submit" value="add board" className="add-cards-btn"/>
@@ -156,7 +156,6 @@ class OddCalculator extends Component {
               <button onClick={this.getOdds}  className="get-odds-btn">GET ODDS</button>
             </div>
             { oddsCalculated ?  <div><button onClick={this.refreshPage} className="more-odds-btn">More</button></div> : '' }
-            
             <div>
               <button onClick={this.props.history.goBack} className="back-btn">Back</button>
             </div>

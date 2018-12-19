@@ -106,7 +106,7 @@ class AddPlayer extends Component {
         <form onSubmit={this.handleSubmitPlayer} className="add-player-form">
           <div className="add-name-box">
             <label>Name: </label>
-            <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" />
+            <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" placeholder="Player name"/>
           </div>
           <div className="add-buyin-box">
             <label>Buy in: </label>
