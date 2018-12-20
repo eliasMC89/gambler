@@ -41,7 +41,7 @@ class Navbar extends Component {
           <Link to="/profile/my-games" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My games</li></Link>
           <Link to="/profile/my-shared-games" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My pending games</li></Link>
           <Link to="/odds-calculator" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Odds calculator</li></Link>
-          <a href="https://www.pokernews.com/poker-rules/" target="_blank" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Poker rules</li></a>
+          <a href="https://www.pokernews.com/poker-rules/" target="_blank" rel="noopener noreferrer" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Poker rules</li></a>
           <Link to="/" onClick={this.props.logout} className="menu-link"><li className="menu-option">Logout</li></Link>
         </ul>
       </div>
