@@ -25,7 +25,6 @@ class CashGamePlaying extends Component {
         if(!isPlaying) {
           this.props.history.push(`/cash-game/${id}/summary`)
         } else {
-          console.log(cashGame);
           this.setState({
             currentPlayerList: currentPlayerList,
             pot: pot,

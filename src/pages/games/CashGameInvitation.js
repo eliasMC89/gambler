@@ -16,7 +16,7 @@ class CashGameInvitation extends Component {
     const gameId = this.props.match.params.id;
     cash.rejectSharedGame (gameId)
       .then(()=>{
-        this.props.history.push(`/profile/my-info`)
+        this.props.history.push(`/profile/my-shared-games`)
       })
   }
 

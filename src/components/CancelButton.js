@@ -7,7 +7,6 @@ class CancelButton extends Component {
   }
 
   render() {
-    //console.log(this.props)
     return (
       <div>
         <button onClick={this.handleCancelButton} className="cancel-btn" >Cancel</button>
