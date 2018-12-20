@@ -788,6 +788,9 @@ p {
 .user-found {
   margin: 10px;
   font-weight: bold;
+  border: 2px solid black;
+  padding: 3px 5px;
+  border-radius: 20px;
 }
 
 .user-found-box {
@@ -817,11 +820,13 @@ p {
 }
 
 .accept-btn {
-  background-color: green;
+  background-color: #01172F;
+  border: 1px solid #01172F;
 }
 
 .reject-btn {
-  background-color: red;
+  background-color: #8C0000;
+  border: 1px solid #8C0000;
 }
 
 /* --- loading spinner --- */

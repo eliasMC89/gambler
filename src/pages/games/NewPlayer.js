@@ -83,7 +83,7 @@ class NewPlayer extends Component {
               </div>
               <div className="add-buyin-box">
                 <label className="add-buyin-label">Buy in: </label>
-                <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
+                <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" placeholder="0"/>
               </div>
               <div className="add-player-btn-box">
                 <button onClick={this.handleSubmitPlayer} className="add-player-btn"><img src={require('./plus-button.png')} alt="add" className="add-player-img"/></button>
