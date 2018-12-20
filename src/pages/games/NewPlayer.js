@@ -82,11 +82,11 @@ class NewPlayer extends Component {
                 <input type="text" name="name" value={currentPlayerName} onChange={this.handleNameChange} className="add-name-input" placeholder="Player name"/>
               </div>
               <div className="add-buyin-box">
-                <label>Buy in: </label>
+                <label className="add-buyin-label">Buy in: </label>
                 <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" />
               </div>
               <div className="add-player-btn-box">
-                <input type="submit" value="+" className="add-player-btn"/>
+                <button onClick={this.handleSubmitPlayer} className="add-player-btn"><img src={require('./plus-button.png')} alt="add" className="add-player-img"/></button>
               </div>
             </form>
             <div className="cancel-btn-box">
