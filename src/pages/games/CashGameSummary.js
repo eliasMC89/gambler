@@ -5,6 +5,7 @@ import auth from '../../lib/auth-service';
 
 import Header from '../../components/Header';
 import SummaryPlayerCard from '../../components/SummaryPlayerCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 class CashGameSummary extends Component {
 
@@ -81,7 +82,7 @@ class CashGameSummary extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h1>Loading...</h1>
+      return <LoadingSpinner />
     } else {
       const { id } = this.props.match.params;
       const { playerList, pot, duration } = this.state;
@@ -96,13 +97,15 @@ class CashGameSummary extends Component {
             })}
           </ul>
           <div className="done-link-box">
-            <Link to="/home" className="done-game-link">DONE</Link>
+            <Link to="/home" className="end-game-btn">DONE</Link>
           </div>
-          <div className="share-game-link">
-            <Link to={`/cash-game/${id}/share`} >Share game</Link>
-          </div>
-          <div className="delete-game-btn-box">
-            <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+          <div className="summary-buttons">
+            <div className="delete-game-btn-box">
+              <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+            </div>
+            <div className="share-game-link-box">
+              <Link to={`/cash-game/${id}/share`} className="share-game-link">Share game</Link>
+            </div>
           </div>
           
         </div>

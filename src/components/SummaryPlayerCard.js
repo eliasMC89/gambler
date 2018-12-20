@@ -7,12 +7,12 @@ class SummaryPlayerCard extends Component {
       <li className="current-player-card">
         <div className="current-player-info"><span className="card-name-tag">{player.name}</span></div>
         <div className="summary-player-info bi-fs-infobox">
-          <p>Total buy in: {player.buyin} $</p>
-          <p>Final Stack: {player.finalStack} $</p>
+          <p className="prop-player-tag">Total buy in: {player.buyin} $</p>
+          <p className="prop-player-tag">Final Stack: {player.finalStack} $</p>
         </div>
         <div className="buyins-box">
           <div className="summary-player-info">
-            <p>Buyins:</p>
+            <p className="prop-player-tag">Buyins:</p>
           </div >
           <ul className="buyin-history">
             {player.buyinHistory.map((buyin, index)=>{

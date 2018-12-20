@@ -13,7 +13,7 @@ class Landing extends Component {
           </div>
         </div>
         <div className="container landing-text">
-          <p className="main-text">Keep track of your games</p>
+          <p className="main-text">For live poker playing</p>
         </div>
       </div>
     );

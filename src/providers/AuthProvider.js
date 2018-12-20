@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import auth from '../lib/auth-service';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AuthContext = React.createContext();
+
 
 export const { Provider, Consumer } = AuthContext;
 
@@ -70,7 +72,7 @@ class AuthProvider extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div>Loading....</div>
+      return <LoadingSpinner />
     }
     return <div>
       <Provider value={{

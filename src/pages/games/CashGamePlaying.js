@@ -5,6 +5,7 @@ import cash from '../../lib/cashGame-service';
 import Header from '../../components/Header';
 import CurrentPlayerCard from '../../components/CurrentPlayerCard';
 import FinishedPlayerCard from '../../components/FinishedPlayerCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 class CashGamePlaying extends Component {
 
@@ -61,7 +62,7 @@ class CashGamePlaying extends Component {
 
   render() {
     if (this.state.isLoading){
-      return <h1>Loading...</h1>
+      return <LoadingSpinner />
     } else {
         const { id } = this.props.match.params;
         const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;

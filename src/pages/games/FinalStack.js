@@ -3,6 +3,7 @@ import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
 import CancelButton from '../../components/CancelButton';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 class FinalStack extends Component {
 
@@ -57,7 +58,7 @@ class FinalStack extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h1>Loading...</h1>
+      return <LoadingSpinner />
     } else {
       const { notEnoughPotError } = this.state;
       return (

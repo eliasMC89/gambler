@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
 class CashGameCard extends Component {
 
@@ -46,7 +47,7 @@ class CashGameCard extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h1>Loading...</h1>
+      return <LoadingSpinner />
     } else {
         const { isPlaying } = this.state;
         const { game } = this.props;
@@ -57,7 +58,7 @@ class CashGameCard extends Component {
               <p><span className="pot-info">Pot: {game.pot}</span></p>
             </div>
             <div className="second-line-game-info">
-            { isPlaying ? '' : <p>Duration: {this.msToTime(this.state.duration)}</p>}
+            { isPlaying ? <p className="playing-tag">PLAYING</p> : <p>Duration: {this.msToTime(this.state.duration)}</p>}
               
               <p>Players: {game.currentPlayerList.length}</p>
             </div>

@@ -36,8 +36,10 @@ class Navbar extends Component {
           <button onClick={this.handleClickMenu} className="hide-menu-btn">Hide</button>
         </div>
         <ul className="nav-menu">
+        <Link to="/home" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Home</li></Link>
           <Link to="/profile/my-info" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My profile</li></Link>
           <Link to="/profile/my-games" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My games</li></Link>
+          <Link to="/profile/my-shared-games" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">My pending games</li></Link>
           <Link to="/odds-calculator" onClick={this.handleClickMenu} className="menu-link"><li className="menu-option">Odds calculator</li></Link>
           <Link to="/" onClick={this.props.logout} className="menu-link"><li className="menu-option">Logout</li></Link>
         </ul>

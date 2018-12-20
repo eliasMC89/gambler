@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 import CashGameCard from '../../components/CashGameCard';
 import Header from '../../components/Header';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 class MyGames extends Component {
 
@@ -25,7 +26,7 @@ class MyGames extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h1>Loading...</h1>
+      return <LoadingSpinner />
     } else {
       const { myGames } = this.state;
       return (
@@ -48,10 +49,6 @@ class MyGames extends Component {
               }
             })}
           </ul>
-          <div className="backprofile-box">
-            <Link to="/profile/my-info" className="backhome-link">Back to profile</Link>
-          </div>
-          
         </div>
       );
     }

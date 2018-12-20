@@ -309,7 +309,7 @@ p {
 
 .add-name-input {
   border: 1px solid;
-  height: 30px;
+  height: 35px;
   margin-right: 15px;
   border-radius: 5px;
   padding: 8px;
@@ -323,27 +323,16 @@ p {
 
 .add-buyin-input {
   border: 1px solid;
-  height: 30px;
+  height: 35px;
   border-radius: 5px;
   width: 50px;
   margin-top: 5px;
   padding: 8px;
 }
 
-/* .add-player-btn {
-  border: 1px solid black;
-  margin-top: 28px;
-  height: 30px;
-  width: 30px;
-  border-radius: 10px;
-  font-size: 25px;
-  background-color: red;
-  color: white;
-} */
-
 .add-player-img {
   height: 35px;
-  margin-top: 22px;
+  margin-top: 25px;
 }
 
 .start-btn {
@@ -361,7 +350,7 @@ p {
 }
 
 .add-player-card {
-  border: 1px solid black;
+  border: 2px solid black;
   list-style: none;
   display: inline-block;  
   border-radius: 20px;
@@ -446,6 +435,8 @@ p {
   font-weight: bold;
   border: 1px solid #570000;
   padding: 10px 20px;
+  text-decoration: none;
+  margin-bottom: 40px
 }
 
 .playing-pot {
@@ -527,9 +518,14 @@ p {
   font-size: 25px;
 }
 
+.prop-player-tag {
+  font-weight: bold;
+}
+
 .done-link-box {
   text-align: center;
   margin: 50px;
+  margin-bottom: 70px;
 }
 
 .done-game-link {
@@ -542,16 +538,28 @@ p {
 }
 
 .delete-game-btn {
-  background-color: red;
-  color: white;
-  border-radius: 15px;
   padding: 5px 10px;
+  margin-bottom: 40px;
+  text-decoration: underline;
+  color: #8C0000;
+}
+
+.share-game-link-box {
+  text-align: center;
   margin-bottom: 40px;
 }
 
 .share-game-link {
-  text-align: center;
-  margin-bottom: 40px;
+  background-color: #01172F;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.summary-buttons {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* --- profile --- */
@@ -571,6 +579,10 @@ p {
   color: white;
   padding: 10px;
   border-radius: 10px;
+}
+
+.playing-tag {
+  font-weight: bold;
 }
 
 .backhome-link {
@@ -642,11 +654,12 @@ p {
 }
 
 .is-playing {
-  background-color: green;
+  background-color: #570000;
+  color: white;
 }
 
 .is-not-playing {
-  background-color: grey;
+  background-color: #E5E5E5;
 }
 
 /* --- odd calculator --- */
@@ -670,8 +683,15 @@ p {
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
-  background-color: blue;
+  background-color: #01172F;
   color: white;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.more-odds-btn-box {
+  text-align: center;
+  margin-bottom: 40px
 }
 
 .get-odds-btn {
@@ -681,6 +701,11 @@ p {
   border: 1px solid red;
   border-radius: 10px;
   box-shadow: 0px 0px 35px 1px black;
+}
+
+.get-odds-btn-box {
+  margin-top: 50px;
+  text-align: center;
 }
 
 .list-odds-result {
@@ -699,9 +724,11 @@ p {
 }
 
 .more-odds-btn {
-  background-color: blue;
   color: white;
-  border-radius: 10px;
+  border-radius: 20px;
+  background-color: #01172F;
+  padding: 3px 5px;
+  border: 1px solid #01172F;
 }
 
 .odds-instructions {
@@ -770,4 +797,35 @@ p {
 
 .reject-btn {
   background-color: red;
+}
+
+/* --- loading spinner --- */
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+
+  margin: 200px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }

@@ -113,7 +113,7 @@ class AddPlayer extends Component {
             <input type="number" name="buyin" value={currentPlayerBuyIn} onChange={this.handleBuyInChange} className="add-buyin-input" placeholder="0"/>
           </div>
           <div className="add-player-btn-box">
-            <button onClick={this.handleSubmitPlayer} ><img src={require('./add-square-button.png')} alt="add" className="add-player-img"/></button>
+            <button onClick={this.handleSubmitPlayer} ><img src={require('./plus-button.png')} alt="add" className="add-player-img"/></button>
           </div>
         </form>
         { emptyInputError ? <h4 className="error-msg">Fill in the fields!</h4> : ''}
