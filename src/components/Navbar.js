@@ -24,7 +24,7 @@ class Navbar extends Component {
   notShowMenu = () => {
     return(
       <div>
-        <button onClick={this.handleClickMenu} className="menu-btn"><img src={require('./menu1.png')} alt="menu" className="menu-img"/></button>
+        <button onClick={this.handleClickMenu} className="menu-btn"><img src={require('./nav-images/menu1.png')} alt="menu" className="menu-img"/></button>
       </div>
     )
   }
@@ -52,7 +52,7 @@ class Navbar extends Component {
     return (
     <div className="navbar">
       <div className="home-link">
-        <Link to="/home" className="nav-link"><img src={require('./trebol-poker.png')} alt="logo" className="navbar-logo"/></Link>
+        <Link to="/home" className="nav-link"><img src={require('./images/trebol-poker.png')} alt="logo" className="navbar-logo"/></Link>
       </div>
       { this.state.isShowMenu ? this.showMenu() : this.notShowMenu()}
     </div>

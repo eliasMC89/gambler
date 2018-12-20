@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import trebol from './trebol-poker.png';
+import trebol from './main-images/trebol-poker.png';
 import Navbar from '../../components/Navbar';
 
 class Landing extends Component {
