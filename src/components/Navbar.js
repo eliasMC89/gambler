@@ -52,7 +52,7 @@ class Navbar extends Component {
     return (
     <div className="navbar">
       <div className="home-link">
-        <Link to="/home" className="nav-link"><img src={require('./images/trebol-poker.png')} alt="logo" className="navbar-logo"/></Link>
+        <Link to="/home" className="nav-link"><img src={require('./nav-images/trebol-poker.png')} alt="logo" className="navbar-logo"/></Link>
       </div>
       { this.state.isShowMenu ? this.showMenu() : this.notShowMenu()}
     </div>
