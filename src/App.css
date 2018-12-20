@@ -714,6 +714,11 @@ p {
   font-weight: bold;
 }
 
+.card-btn {
+  border: none;
+  background: transparent;
+}
+
 .more-odds-btn-box {
   text-align: center;
   margin-bottom: 40px
@@ -780,10 +785,12 @@ p {
   background-color: #8C0000;
   color: white;
   border-radius: 20px;
-  padding: 2px 10px;
+  padding: 10px 2p;
   font-weight: bold;
   margin-left: 30px;
   border: 1px solid #8C0000;
+  height: 20px;
+  margin-top: 18px;
 }
 
 .search-btn {

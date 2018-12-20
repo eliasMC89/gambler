@@ -13,6 +13,7 @@ class SearchShareGame extends Component {
     foundPlayer: {},
     notFoundPlayer: false,
     errorMessage: '',
+    owner: '',
     pendingOwners: [],
     secondaryOwners: [],
     myUsername: '',
@@ -24,8 +25,9 @@ class SearchShareGame extends Component {
 
     cash.getDetail(id)
       .then((game)=>{
-        const { pendingOwners, secondaryOwners } = game;
+        const { owner, pendingOwners, secondaryOwners } = game;
         this.setState({
+          owner,
           pendingOwners,
           secondaryOwners,
         })
@@ -88,9 +90,9 @@ class SearchShareGame extends Component {
   handleClickShare = () => {
     // make post to add user id in pending owners
     const { id } = this.props.match.params;
-    const { foundPlayer, pendingOwners, secondaryOwners } = this.state;
+    const { owner, foundPlayer, pendingOwners, secondaryOwners } = this.state;
     
-    if (pendingOwners.includes(foundPlayer._id) || secondaryOwners.includes(foundPlayer._id)) {
+    if (owner === foundPlayer._id || pendingOwners.includes(foundPlayer._id) || secondaryOwners.includes(foundPlayer._id)) {
       this.props.history.goBack(); 
     } else {
       cash.shareGame(id, foundPlayer._id)
