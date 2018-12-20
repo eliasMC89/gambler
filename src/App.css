@@ -93,6 +93,8 @@ p {
   margin-right: 8px;
   text-align: right;
   padding-top: 10px;
+  background: transparent;
+  border: none;
 }
 
 .menu-img {
