@@ -769,6 +769,11 @@ p {
   font-weight: bold;
 }
 
+.text-instructions-odds {
+  padding: 5px;
+  font-weight: bold;
+}
+
 /* --- share game --- */
 
 .share-btn {

@@ -110,6 +110,58 @@ class OddCalculator extends Component {
     
   }
 
+  handleClickCard = (event) => {
+    const { value } = event.target;
+    const { playerCards } = this.state;
+    let cards = '';
+    switch (value) {
+      case 'Spades':
+        cards = playerCards + 's';
+        break;
+      case 'Hearts':
+        cards = playerCards + 'h';
+        break;
+      case 'Clubs':
+        cards = playerCards + 'c';
+        break;
+      case 'Diamonds':
+        cards = playerCards + 'd';
+        break;
+      default:
+        cards = playerCards + value;
+        break;
+    }
+    this.setState({
+      playerCards: cards,
+    })
+  }
+
+  handleClickCardBoard = (event) => {
+    const { value } = event.target;
+    const { board } = this.state;
+    let cards = '';
+    switch (value) {
+      case 'Spades':
+        cards = board + 's';
+        break;
+      case 'Hearts':
+        cards = board + 'h';
+        break;
+      case 'Clubs':
+        cards = board + 'c';
+        break;
+      case 'Diamonds':
+        cards = board + 'd';
+        break;
+      default:
+        cards = board + value;
+        break;
+    }
+    this.setState({
+      board: cards,
+    })
+  }
+
   render() {
     const { playerCards, cardsArray, board, oddsCalculated, resultsArray, showBoard } = this.state;
       return (
@@ -118,10 +170,10 @@ class OddCalculator extends Component {
           <div className="container">
             <Header title="Odds calculator" />
             <div className="odds-instructions">
-              <p>Select hands (two cards per hand):</p>
-              <p> · A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2</p>
-              <p> · Spades: s, Hearts: h, Clubs: c, Diamonds: d</p>
-              <p className="example-instructions">For example: Ace of spades: As</p>
+              <p className="text-instructions-odds">Select players' hands (two cards per hand):</p>
+              <p> | <input value="A" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="K" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="Q" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="J" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="T" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="9" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="8" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="7" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="6" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="5" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="4" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="3" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="2" onClick={this.handleClickCard} className="card-btn" type="button"/> | </p>
+              <hr/>
+              <p> | <input value="Spades" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="Hearts" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="Clubs" onClick={this.handleClickCard} className="card-btn" type="button"/> | <input value="Diamonds" onClick={this.handleClickCard} className="card-btn" type="button"/> | </p>
             </div>
             <form onSubmit={this.handleSubmitCards} >
               <div className="cards-input-box">
@@ -140,6 +192,12 @@ class OddCalculator extends Component {
                   </li>
                 )
               })}
+            </div>
+            <div className="odds-instructions">
+              <p className="text-instructions-odds">Select board (three or four cards):</p>
+              <p> | <input value="A" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="K" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="Q" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="J" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="T" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="9" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="8" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="7" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="6" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="5" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="4" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="3" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="2" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | </p>
+              <hr/>
+              <p> | <input value="Spades" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="Hearts" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="Clubs" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | <input value="Diamonds" onClick={this.handleClickCardBoard} className="card-btn" type="button"/> | </p>
             </div>
             <form onSubmit={this.handleSubmitBoard} >
               <div className="cards-input-box">
