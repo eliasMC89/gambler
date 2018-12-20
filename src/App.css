@@ -170,6 +170,12 @@ p {
 
 /* ------- PAGES ------- */
 
+.not-found-title {
+  text-align: center;
+  font-size: 35px;
+  margin-top: 200px;
+}
+
 /* --- landing --- */
 
 .main-title {

@@ -26,7 +26,7 @@ class Signup extends Component {
       })
       .catch( error => {
         this.setState({
-          statusError: error,
+          statusError: error.response.data.error,
         })
       } )
   }
@@ -41,7 +41,7 @@ class Signup extends Component {
     return (
       <div className="container li-su-container">
         <h1 className="li-su-title">Sign Up</h1>
-        { statusError ? <h4 className="error-msg">Error!</h4> : ''}
+        { statusError ? <h4 className="error-msg">{statusError}</h4> : ''}
         <form onSubmit={this.handleFormSubmit}>
           <div className="username-container">
             <div>

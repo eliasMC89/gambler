@@ -29,10 +29,9 @@ class Login extends Component {
   render() {
     const { statusError } = this.state;
     return (
-      
       <div className="container li-su-container">
         <h1 className="li-su-title">Log In</h1>
-        { statusError ? <h4 className="error-msg">{this.state.statusError}</h4> : ''}
+        { statusError ? <h4 className="error-msg">{statusError}</h4> : ''}
         <FormUser submit={this.handleFormSubmit} />
         <div className="to-su-li">
           <div>
