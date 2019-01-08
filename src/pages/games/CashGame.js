@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Switch } from 'react-router-dom';
+import {  Route, Switch } from 'react-router-dom';
 
 import PrivateRoute from '../../components/PrivateRoute';
 import Navbar from '../../components/Navbar';
@@ -12,6 +12,7 @@ import FinalStack from './FinalStack';
 import NewPlayer from './NewPlayer';
 import SearchShareGame from './SearchShareGame';
 import CashGameInvitation from './CashGameInvitation';
+import NotFound from '../main/NotFound';
 
 class CashGame extends Component {
 
@@ -31,6 +32,7 @@ class CashGame extends Component {
           <PrivateRoute path={`${match.path}/:id/new-player`} component={NewPlayer} />
           <PrivateRoute path={`${match.path}/:id/share`} component={SearchShareGame} />
           <PrivateRoute path={`${match.path}/:id/invitation`} component={CashGameInvitation} />
+          <Route component={NotFound} />
         </Switch>
           
       </div>
