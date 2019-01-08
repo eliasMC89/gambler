@@ -51,10 +51,6 @@ class CashGameSummary extends Component {
           isError: true,
         })
       })
-    
-    
-    
-
   }
 
   handleDeleteGame = () => {
