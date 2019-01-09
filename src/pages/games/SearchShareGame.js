@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import auth from '../../lib/auth-service';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
 import CancelButton from '../../components/CancelButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import NotFound from '../main/NotFound';
 
 class SearchShareGame extends Component {
 
@@ -17,6 +19,7 @@ class SearchShareGame extends Component {
     secondaryOwners: [],
     myUsername: '',
     isLoading: true,
+    isError: false,
   }
 
   componentDidMount () {
@@ -37,6 +40,12 @@ class SearchShareGame extends Component {
               isLoading: false,
             })
       })
+      })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          isError: true,
+        })
       })
     
   }
@@ -116,6 +125,8 @@ class SearchShareGame extends Component {
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
+    }else if (this.state.isError){
+      return <Route component={NotFound} />
     } else {
       const { searchPlayer, foundPlayer, notFoundPlayer, errorMessage } = this.state;
       return (

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
+
 import Header from '../../components/Header';
 import CancelButton from '../../components/CancelButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import NotFound from '../main/NotFound';
 
 class NewPlayer extends Component {
   
@@ -12,6 +15,7 @@ class NewPlayer extends Component {
     currentPlayerBuyIn: 0,
     emptyInput: false,
     isLoading: true,
+    isError: false,
   }
 
   componentDidMount () {
@@ -22,6 +26,12 @@ class NewPlayer extends Component {
         this.setState({
           currentPlayerList,
           isLoading: false,
+        })
+      })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          isError: true,
         })
       })
     }
@@ -70,6 +80,8 @@ class NewPlayer extends Component {
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
+    }else if (this.state.isError){
+      return <Route component={NotFound} />
     } else {
       const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
       return (
