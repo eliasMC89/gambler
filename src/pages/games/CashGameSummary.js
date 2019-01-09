@@ -86,7 +86,7 @@ class CashGameSummary extends Component {
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
-    } else if (this.state.isError){
+    }else if (this.state.isError){
       return <Route component={NotFound} />
     } else {
         const { id } = this.props.match.params;

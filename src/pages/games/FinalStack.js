@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
 import CancelButton from '../../components/CancelButton';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import NotFound from '../main/NotFound';
 
 class FinalStack extends Component {
 
@@ -12,6 +14,7 @@ class FinalStack extends Component {
     remainingPot: 0,
     notEnoughPotError: false,
     isLoading: true,
+    isError: false,
   }
 
   componentDidMount () {
@@ -21,6 +24,12 @@ class FinalStack extends Component {
         this.setState({
           remainingPot: cashGame.remainingPot,
           isLoading: false,
+        })
+      })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          isError: true,
         })
       })
   }
@@ -47,7 +56,11 @@ class FinalStack extends Component {
         .then((res)=>{
           this.props.history.push(`/cash-game/${id}/playing`);
         })
-        .catch( error => console.log(error) )
+        .catch(error => {
+          this.setState({
+            isError: true,
+          })
+        })
     } else {
       this.setState({
         notEnoughPotError: true,
@@ -59,6 +72,8 @@ class FinalStack extends Component {
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
+    }else if (this.state.isError){
+      return <Route component={NotFound} />
     } else {
       const { notEnoughPotError } = this.state;
       return (
