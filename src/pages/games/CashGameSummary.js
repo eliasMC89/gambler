@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import auth from '../../lib/auth-service';
 
 import Header from '../../components/Header';
 import SummaryPlayerCard from '../../components/SummaryPlayerCard';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import NotFound from '../main/NotFound';
 
 class CashGameSummary extends Component {
 
@@ -19,13 +20,14 @@ class CashGameSummary extends Component {
     endDate: '',
     duration: '',
     isLoading: true,
+    isError: false,
   }
 
   componentDidMount () {
     const { id } = this.props.match.params;
     cash.getDetail(id)
-      .then((cashGame)=>{
-        const { owner, currentPlayerList, pot, startDate, endDate } = cashGame;
+      .then((game)=>{
+        const { owner, currentPlayerList, pot, startDate, endDate } = game;
         const duration = Date.parse(endDate) - Date.parse(startDate);
 
         this.setState({
@@ -43,10 +45,12 @@ class CashGameSummary extends Component {
             })
           })
       })
-    
-    
-    
-
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          isError: true,
+        })
+      })
   }
 
   handleDeleteGame = () => {
@@ -68,7 +72,6 @@ class CashGameSummary extends Component {
   }
 
   msToTime = (duration) => {
-      // let milliseconds = parseInt((duration % 1000) / 100)
       let seconds = parseInt((duration / 1000) % 60),
       minutes = parseInt((duration / (1000 * 60)) % 60),
       hours = parseInt((duration / (1000 * 60 * 60)) % 24);
@@ -83,33 +86,35 @@ class CashGameSummary extends Component {
   render() {
     if (this.state.isLoading) {
       return <LoadingSpinner />
+    }else if (this.state.isError){
+      return <Route component={NotFound} />
     } else {
-      const { id } = this.props.match.params;
-      const { playerList, pot, duration } = this.state;
-      return (
-        <div className="container">
-          <Header title="Game summary" />
-          <h3 className="summary-total-pot">Total pot: {pot}</h3>
-          <p>Duration: {this.msToTime(duration)}</p>
-          <ul className="player-list">
-            {playerList.map((player)=>{
-              return <SummaryPlayerCard key={`id=${player._id}`} player={player} />
-            })}
-          </ul>
-          <div className="done-link-box">
-            <Link to="/home" className="end-game-btn">DONE</Link>
-          </div>
-          <div className="summary-buttons">
-            <div className="delete-game-btn-box">
-              <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+        const { id } = this.props.match.params;
+        const { playerList, pot, duration } = this.state;
+        return (
+          <div className="container">
+            <Header title="Game summary" />
+            <h3 className="summary-total-pot">Total pot: {pot}</h3>
+            <p>Duration: {this.msToTime(duration)}</p>
+            <ul className="player-list">
+              {playerList.map((player)=>{
+                return <SummaryPlayerCard key={`id=${player._id}`} player={player} />
+              })}
+            </ul>
+            <div className="done-link-box">
+              <Link to="/home" className="end-game-btn">DONE</Link>
             </div>
-            <div className="share-game-link-box">
-              <Link to={`/cash-game/${id}/share`} className="share-game-link">Share game</Link>
+            <div className="summary-buttons">
+              <div className="delete-game-btn-box">
+                <button onClick={this.handleDeleteGame} className="delete-game-btn" >Delete Game</button>
+              </div>
+              <div className="share-game-link-box">
+                <Link to={`/cash-game/${id}/share`} className="share-game-link">Share game</Link>
+              </div>
             </div>
+            
           </div>
-          
-        </div>
-      );
+        );
     }
   }
 }
