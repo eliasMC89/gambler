@@ -2,7 +2,7 @@
 
 ## Description
 
-Poker cash game organizer that keeps a history of all the games a user has played.
+Mobile app for poker players that keeps the account and the record of the user's poker games. The user can also share a game with other users and use the poker odds calculator which retrieves the odds of the players in a particular hand.
 
 ## User stories
 
@@ -11,13 +11,15 @@ Poker cash game organizer that keeps a history of all the games a user has playe
 - Sign up: As a user I want to sign up and create a new account if I don't have one.
 - Log In: As a user I want to log in into my account.
 - Log out: As a user I want to exit my account.
-- Edit profile: As a user I want to edit my profile information.
 - Create game: As a user I want to create a new poker cash game:
   - Number of players
   - Name of players
-  - Sort the seats randomly
   - Assign a buy in to each of the players
   - See the ongoing game stats
+- Edit current game: As a user I want to edit a game that is currently being played.
+  - Add a new player
+  - Assign a rebuy to a player
+  - Quit a player from the game and assign his final stack
 - End game: As a user I want to end a current game.
   - Assign the final stack of each player.
   - See the final game stats:
@@ -26,33 +28,31 @@ Poker cash game organizer that keeps a history of all the games a user has playe
     - Wins & Losses
     - Date
 - See game history: As a user I want to see all the games I have played.
+- Share game with other users: As a user I want to share a finished game with other users.
+- Odds calculator: As a user I want to calculate my equity (probability to win) in a particular hand.
 
 ## Backlog
 
 - Debt count
-- Add player (player joins an existing game)
-- Quit player (player quits an existing game)
 - Tourney game organizer
-- Odds calculator
-- User interaction
 
 ## Client
 
 ## Routes
 
 "/"
-- Home page
+- Landing page
 - Public
 - Title + description
 - Login or Sign up link
 
-"/auth/login"
+"/login"
 - Login page
 - Public
 - Not accessible if logged in
 - Login form
 
-"/auth/signup"
+"/signup"
 - Sign up page
 - Public
 - Not accessible if logged in
@@ -63,49 +63,60 @@ Poker cash game organizer that keeps a history of all the games a user has playe
 - Navbar with profile button and logo
 - Only users
 
-"/cash-game/new"
-- Create cash game page
+"/cash-game/add-players"
+- Add players and buy-in to game
 - Only users
-- New game form
+- Form
   - Player names
   - Buy in for each player
 
-(backlog)
-"/cash-game/:id/seats"
-- Game seats page
-- Randomizes seats in a poker table
-- Start game button
-
-"/cash-game/:id/play"
+"/cash-game/:id/playing"
 - Game playing
 - Game stats:
-  - Randomized seats
   - Pot
-  - Player names and buy in
-  - Start time
-- Re-buy button (backlog)
-- Add player button (backlog)
-- Quit player button (backlog)
+  - Player names and buy in and rebuys
+- Re-buy button
+- Add player button
+- Quit player button
 - End game button
 
-(backlog)
-"/cash-game/:id/rebuy"
+"/cash-game/:id/rebuy/:playerId"
 - Rebuy form page
-- Lists all the players with the current buy in and a + button to make a buy in
-- Back to game button
+  - Rebuy quantity
+- Rebuy button
+- Cancel button (back to game)
 
-"/cash-game/:id/stacks"
-- Final stacks page
-- Submit button: stores new game into game history
+"/cash-game/:id/final-stack/:playerId"
+- Final stack form page
+  - Final stack number
+- Final stack button
+- Cancel button (back to game)
 
-"/cash-game/:id"
+"/cash-game/:id/summary"
 - Cash game detail
 - Info:
   - Total pot
-  - Wins & Losses
+  - Players' stats
   - Duration
-  - Date
-- Back to menu button
+- Delete game button
+- Share game button
+- Done button (back to menu)
+
+"/cash-game/:id/new-player"
+- Newplayer form
+  - Name
+  - Buy in
+- Add button
+- Cancel button
+
+"/cash-game/:id/share"
+- Search player form
+- Player found name (if exists)
+- Share game button
+
+"/cash-game/:id/invitation"
+- Accept shared game button
+- Reject shared game button
 
 "/profile"
 - Profile page
