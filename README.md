@@ -33,7 +33,7 @@ Mobile app for poker players that keeps the account and the record of the user's
 
 ## Backlog
 
-- Debt count
+- User overall stats
 - Tourney game organizer
 
 ## Client
@@ -60,7 +60,6 @@ Mobile app for poker players that keeps the account and the record of the user's
 
 "/home"
 - Create new game button
-- Navbar with profile button and logo
 - Only users
 
 "/cash-game/add-players"
@@ -118,25 +117,31 @@ Mobile app for poker players that keeps the account and the record of the user's
 - Accept shared game button
 - Reject shared game button
 
-"/profile"
-- Profile page
+"/profile/my-info"
 - User information
-- Edit profile button
-- Game history button
 
-"/games"
-- Game history page
-- Lists all games
+"/profile/my-games"
+- Lists all user's games
+- Lists all user's shared games by other users
+
+"/profile/my-shared-games"
+- Lists all user's pending shared games to be accepted or rejected
   
 
 ## Components
 
-- Login
-- SignUp
+- CancelButton
+- CashGameCard
+- CurrentPlayerCard
+- FinishedPlayerCard
+- FormUser
+- Header
+- InputNumber
+- LoadingSpinner
 - Navbar
-- NewCashGame
-- FinalStacks
-- GameList
+- SummaryPlayerRoute
+- AnonRoute
+- PrivateRoute
 
 ## Services
 
@@ -145,14 +150,22 @@ Mobile app for poker players that keeps the account and the record of the user's
   - auth.signup(user)
   - auth.logout()
   - auth.me()
-  - auth.getUser()
+  - auth.search()
   
 - CashGameService
-  - cashGame.create()
-  - cashGame.edit()
-  - cashGame.delete()
-  - cashGame.list()
-  - cashGame.detail()
+  - cash.create()
+  - cash.getMyGames()
+  - cash.getMySharedGames()
+  - cash.getDetail()
+  - cash.newPlayer()
+  - cash.updateStack()
+  - cash.updateRebuy()
+  - cash.endGame()
+  - cash.deleteGame()
+  - cash.deleteSharedGame()
+  - cash.shareGame()
+  - cash.acceptSharedGame()
+  - cash.rejectSharedGame()
   
 ## Server
   
