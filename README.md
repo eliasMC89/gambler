@@ -2,7 +2,7 @@
 
 ## Description
 
-Mobile app for poker players that keeps the account and the record of the user's poker games. The user can also share a game with other users and use the poker odds calculator which retrieves the odds of the players in a particular hand.
+Mobile app that keeps the account and the record of the user's poker games. The user can also share a game with other users and use the poker odds calculator which returns the odds of the players in a particular hand.
 
 ## User stories
 
