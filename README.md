@@ -275,5 +275,7 @@ Mobile app that keeps the account and the record of the user's poker games. The 
     
 ## Link
 
+Mobile version:
+
 https://gambler-app.firebaseapp.com/
 
