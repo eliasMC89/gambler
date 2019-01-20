@@ -4,6 +4,7 @@ import { withAuth } from '../../providers/AuthProvider';
 
 import Header from '../../components/Header';
 import CancelButton from '../../components/CancelButton';
+import NotFound from '../main/NotFound';
 
 
 class AddPlayer extends Component {
@@ -15,7 +16,7 @@ class AddPlayer extends Component {
     emptyInputError: false,
     noPlayersError: false,
     negativeBuyinError: false,
-
+    serverError: false,
   }
 
   handleNameChange = (event) => {  
@@ -92,14 +93,23 @@ class AddPlayer extends Component {
         .then((res)=>{
           this.props.history.push(`/cash-game/${res.game._id}/playing`)
         })
-        .catch( error => console.log(error) )
+        .catch(() => {
+          this.setState({
+            serverError: true,
+          })
+        })
     }
     
   }
 
 
   render() {
-    const { currentPlayerList, emptyInputError, currentPlayerName, currentPlayerBuyIn, noPlayersError, negativeBuyinError } = this.state;
+    const { currentPlayerList, emptyInputError, currentPlayerName, currentPlayerBuyIn, noPlayersError, negativeBuyinError, serverError } = this.state;
+    
+    if (serverError) {
+      return <NotFound />
+    }
+    
     return (
       <div className="container">
         <Header title="Players" />

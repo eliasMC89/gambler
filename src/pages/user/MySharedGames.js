@@ -5,12 +5,14 @@ import cash from '../../lib/cashGame-service';
 import CashGameCard from '../../components/CashGameCard';
 import Header from '../../components/Header';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import NotFound from '../main/NotFound';
 
 class MySharedGames extends Component {
 
   state = {
     mySharedGames: [],
     isLoading: true,
+    serverError: false,
   }
 
   componentDidMount () {
@@ -21,12 +23,20 @@ class MySharedGames extends Component {
           isLoading: false,
         })
       })
+      .catch(() => {
+        this.setState({
+          serverError: true,
+          isLoading: false,
+        })
+      })
     
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
+        return <LoadingSpinner />
     } else {
       const { mySharedGames } = this.state;
       return (

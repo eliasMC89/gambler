@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import cash from '../../lib/cashGame-service';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import auth from '../../lib/auth-service';
 
 import Header from '../../components/Header';
@@ -20,7 +20,7 @@ class CashGameSummary extends Component {
     endDate: '',
     duration: '',
     isLoading: true,
-    isError: false,
+    serverError: false,
   }
 
   componentDidMount () {
@@ -44,11 +44,17 @@ class CashGameSummary extends Component {
               isLoading: false,
             })
           })
+          .catch(error => {
+            this.setState({
+              isLoading: false,
+              serverError: true,
+            })
+          })
       })
       .catch(error => {
         this.setState({
           isLoading: false,
-          isError: true,
+          serverError: true,
         })
       })
   }
@@ -62,10 +68,22 @@ class CashGameSummary extends Component {
         .then(()=>{
           this.props.history.push('/profile/my-games')
         })
+        .catch(error => {
+          this.setState({
+            isLoading: false,
+            serverError: true,
+          })
+        })
     } else {
       cash.deleteSharedGame(id)
         .then(()=>{
           this.props.history.push('/profile/my-games')
+        })
+        .catch(error => {
+          this.setState({
+            isLoading: false,
+            serverError: true,
+          })
         })
     }
     
@@ -84,10 +102,10 @@ class CashGameSummary extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    }else if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
+        return <LoadingSpinner />
     } else {
         const { id } = this.props.match.params;
         const { playerList, pot, duration } = this.state;

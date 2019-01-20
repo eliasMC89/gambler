@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
@@ -14,7 +13,7 @@ class FinalStack extends Component {
     remainingPot: 0,
     notEnoughPotError: false,
     isLoading: true,
-    isError: false,
+    serverError: false,
   }
 
   componentDidMount () {
@@ -29,7 +28,7 @@ class FinalStack extends Component {
       .catch(error => {
         this.setState({
           isLoading: false,
-          isError: true,
+          serverError: true,
         })
       })
   }
@@ -58,7 +57,8 @@ class FinalStack extends Component {
         })
         .catch(error => {
           this.setState({
-            isError: true,
+            isLoading: false,
+            serverError: true,
           })
         })
     } else {
@@ -70,10 +70,10 @@ class FinalStack extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    }else if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
+        return <LoadingSpinner />
     } else {
       const { notEnoughPotError } = this.state;
       return (

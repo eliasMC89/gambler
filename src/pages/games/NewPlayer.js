@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
@@ -15,7 +14,7 @@ class NewPlayer extends Component {
     currentPlayerBuyIn: 0,
     emptyInput: false,
     isLoading: true,
-    isError: false,
+    serverError: false,
   }
 
   componentDidMount () {
@@ -31,7 +30,7 @@ class NewPlayer extends Component {
       .catch(error => {
         this.setState({
           isLoading: false,
-          isError: true,
+          serverError: true,
         })
       })
     }
@@ -70,18 +69,23 @@ class NewPlayer extends Component {
       buyinHistory: [currentPlayerBuyIn],
     }
     newCurrentPlayerList.push(newPlayer);
-    // update game here!! and redirect to playing
     cash.newPlayer(id, currentPlayerBuyIn, newCurrentPlayerList)
       .then((game) => {
         this.props.history.push(`/cash-game/${game._id}/playing`)
       })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+          serverError: true,
+        })
+      })
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    }else if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
+        return <LoadingSpinner />
     } else {
       const { currentPlayerName, currentPlayerBuyIn, emptyInput } = this.state;
       return (

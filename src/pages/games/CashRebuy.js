@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
@@ -11,7 +10,7 @@ import NotFound from '../main/NotFound';
 class CashRebuy extends Component {
   state = {
     rebuy: 0,
-    isError: false,
+    serverError: false,
   }
 
   handleInputChange = (event) => {
@@ -33,14 +32,14 @@ class CashRebuy extends Component {
       })
       .catch(error => {
         this.setState({
-          isError: true,
+          serverError: true,
         })
       })
   }
 
   render() {
-    if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError){
+      return <NotFound />
     }else {
       return (
         <div className="container" >

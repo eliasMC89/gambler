@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 
 import cash from '../../lib/cashGame-service';
 import NotFound from '../main/NotFound';
@@ -7,7 +6,7 @@ import NotFound from '../main/NotFound';
 class CashGameInvitation extends Component {
 
   state = {
-    isError: false,
+    serverError: false,
   }
 
   handleClickAccept = () => {
@@ -18,7 +17,7 @@ class CashGameInvitation extends Component {
       })
       .catch(error => {
         this.setState({
-          isError: true,
+          serverError: true,
         })
       })
   }
@@ -31,14 +30,14 @@ class CashGameInvitation extends Component {
       })
       .catch(error => {
         this.setState({
-          isError: true,
+          serverError: true,
         })
       })
   }
 
   render() {
-    if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError){
+      return <NotFound />
     }else {
       return (
         <div className="container">

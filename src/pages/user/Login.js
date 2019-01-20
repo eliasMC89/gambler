@@ -16,14 +16,14 @@ class Login extends Component {
 
   handleFormSubmit = (user) => {
     auth.login(user)
-    .then((responseUser) => {
-      this.props.setUser(responseUser);
-    })
-    .catch(error => {
-      this.setState({
-        statusError: error.response.data.error,
+      .then((responseUser) => {
+        this.props.setUser(responseUser);
       })
-    })
+      .catch(error => {
+        this.setState({
+          statusError: error.response.data.error,
+        })
+      })
   }
 
   render() {

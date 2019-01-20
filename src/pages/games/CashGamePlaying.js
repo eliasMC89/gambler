@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import cash from '../../lib/cashGame-service';
 
 import Header from '../../components/Header';
@@ -16,7 +16,7 @@ class CashGamePlaying extends Component {
     remainingPot: 0,
     playersRemainingError: false,
     isLoading: true,
-    isError: false,
+    serverError: false,
   }
 
   componentDidMount () {
@@ -39,7 +39,7 @@ class CashGamePlaying extends Component {
       .catch(error => {
         this.setState({
           isLoading: false,
-          isError: true,
+          serverError: true,
         })
       })
   }
@@ -64,14 +64,21 @@ class CashGamePlaying extends Component {
         .then(()=>{
           this.props.history.push(`/cash-game/${id}/summary`);
         })
+        .catch(error => {
+          this.setState({
+            isLoading: false,
+            serverError: true,
+          })
+        })
+
     }
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />
-    }else if (this.state.isError){
-      return <Route component={NotFound} />
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
+        return <LoadingSpinner />
     } else {
         const { id } = this.props.match.params;
         const { currentPlayerList, pot, remainingPot, playersRemainingError } = this.state;
