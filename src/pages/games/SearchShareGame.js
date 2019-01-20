@@ -40,12 +40,6 @@ class SearchShareGame extends Component {
               myUsername: username,
               isLoading: false,
             })
-          .catch(error => {
-            this.setState({
-              isLoading: false,
-              serverError: true,
-            })
-          })
       })
       })
       .catch(error => {
