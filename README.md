@@ -2,7 +2,7 @@
 
 ## Description
 
-Poker cash game organizer that keeps a history of all the games a user has played.
+Mobile app that keeps the account and the record of the user's poker games. The user can also share a game with other users and use the poker odds calculator which returns the odds of the players in a particular hand.
 
 ## User stories
 
@@ -11,13 +11,15 @@ Poker cash game organizer that keeps a history of all the games a user has playe
 - Sign up: As a user I want to sign up and create a new account if I don't have one.
 - Log In: As a user I want to log in into my account.
 - Log out: As a user I want to exit my account.
-- Edit profile: As a user I want to edit my profile information.
 - Create game: As a user I want to create a new poker cash game:
   - Number of players
   - Name of players
-  - Sort the seats randomly
   - Assign a buy in to each of the players
   - See the ongoing game stats
+- Edit current game: As a user I want to edit a game that is currently being played.
+  - Add a new player
+  - Assign a rebuy to a player
+  - Quit a player from the game and assign his final stack
 - End game: As a user I want to end a current game.
   - Assign the final stack of each player.
   - See the final game stats:
@@ -26,33 +28,32 @@ Poker cash game organizer that keeps a history of all the games a user has playe
     - Wins & Losses
     - Date
 - See game history: As a user I want to see all the games I have played.
+- Share game with other users: As a user I want to share a finished game with other users.
+- Odds calculator: As a user I want to calculate my equity (probability to win) in a particular hand.
 
 ## Backlog
 
-- Debt count
-- Add player (player joins an existing game)
-- Quit player (player quits an existing game)
+- User overall stats
 - Tourney game organizer
-- Odds calculator
-- User interaction
+- Profile image
 
 ## Client
 
 ## Routes
 
 "/"
-- Home page
+- Landing page
 - Public
 - Title + description
 - Login or Sign up link
 
-"/auth/login"
+"/login"
 - Login page
 - Public
 - Not accessible if logged in
 - Login form
 
-"/auth/signup"
+"/signup"
 - Sign up page
 - Public
 - Not accessible if logged in
@@ -60,72 +61,88 @@ Poker cash game organizer that keeps a history of all the games a user has playe
 
 "/home"
 - Create new game button
-- Navbar with profile button and logo
 - Only users
 
-"/cash-game/new"
-- Create cash game page
+"/cash-game/add-players"
+- Add players and buy-in to game
 - Only users
-- New game form
+- Form
   - Player names
   - Buy in for each player
 
-(backlog)
-"/cash-game/:id/seats"
-- Game seats page
-- Randomizes seats in a poker table
-- Start game button
-
-"/cash-game/:id/play"
+"/cash-game/:id/playing"
 - Game playing
 - Game stats:
-  - Randomized seats
   - Pot
-  - Player names and buy in
-  - Start time
-- Re-buy button (backlog)
-- Add player button (backlog)
-- Quit player button (backlog)
+  - Player names and buy in and rebuys
+- Re-buy button
+- Add player button
+- Quit player button
 - End game button
 
-(backlog)
-"/cash-game/:id/rebuy"
+"/cash-game/:id/rebuy/:playerId"
 - Rebuy form page
-- Lists all the players with the current buy in and a + button to make a buy in
-- Back to game button
+  - Rebuy quantity
+- Rebuy button
+- Cancel button (back to game)
 
-"/cash-game/:id/stacks"
-- Final stacks page
-- Submit button: stores new game into game history
+"/cash-game/:id/final-stack/:playerId"
+- Final stack form page
+  - Final stack number
+- Final stack button
+- Cancel button (back to game)
 
-"/cash-game/:id"
+"/cash-game/:id/summary"
 - Cash game detail
 - Info:
   - Total pot
-  - Wins & Losses
+  - Players' stats
   - Duration
-  - Date
-- Back to menu button
+- Delete game button
+- Share game button
+- Done button (back to menu)
 
-"/profile"
-- Profile page
+"/cash-game/:id/new-player"
+- Newplayer form
+  - Name
+  - Buy in
+- Add button
+- Cancel button
+
+"/cash-game/:id/share"
+- Search player form
+- Player found name (if exists)
+- Share game button
+
+"/cash-game/:id/invitation"
+- Accept shared game button
+- Reject shared game button
+
+"/profile/my-info"
 - User information
-- Edit profile button
-- Game history button
 
-"/games"
-- Game history page
-- Lists all games
+"/profile/my-games"
+- Lists all user's games
+- Lists all user's shared games by other users
+
+"/profile/my-shared-games"
+- Lists all user's pending shared games to be accepted or rejected
   
 
 ## Components
 
-- Login
-- SignUp
+- CancelButton
+- CashGameCard
+- CurrentPlayerCard
+- FinishedPlayerCard
+- FormUser
+- Header
+- InputNumber
+- LoadingSpinner
 - Navbar
-- NewCashGame
-- FinalStacks
-- GameList
+- SummaryPlayerRoute
+- AnonRoute
+- PrivateRoute
 
 ## Services
 
@@ -134,54 +151,63 @@ Poker cash game organizer that keeps a history of all the games a user has playe
   - auth.signup(user)
   - auth.logout()
   - auth.me()
-  - auth.getUser()
+  - auth.search()
   
 - CashGameService
-  - cashGame.create()
-  - cashGame.edit()
-  - cashGame.delete()
-  - cashGame.list()
-  - cashGame.detail()
+  - cash.create()
+  - cash.getMyGames()
+  - cash.getMySharedGames()
+  - cash.getDetail()
+  - cash.newPlayer()
+  - cash.updateStack()
+  - cash.updateRebuy()
+  - cash.endGame()
+  - cash.deleteGame()
+  - cash.deleteSharedGame()
+  - cash.shareGame()
+  - cash.acceptSharedGame()
+  - cash.rejectSharedGame()
   
 ## Server
   
 ## Models
 
 - User:
-  - Username: String, required
-  - Password: String, required, encrypted
-  - Image/avatar: String
-  - Games played: Number
-  - Total won: Number
-  - Total lost: Number
-  - Overall: Number
-  - Win rate: Number
+  - username: String, required
+  - password: String, required, encrypted
+  - image/avatar: String
+  - games played: Number
+  - total played: Number
+  - total won: Number
+  - total lost: Number
   
 - CashGame:
-  - Owner: user_id, required
-  - Start date: date, required
-  - End date: date
-  - Total time: date
-  - List of Players [id_players]
-  - Pot: Number
-  - Playing: boolean
+  - playerList [Player schema]
+  - pot: Number
+  - remainingPot: Number
+  - isPlaying: Boolean
+  - owner: String
+  - secondaryOwners: [String]
+  - pendingOwners: [String]
+  - startDate: Date
+  - endDate: Date
   
 - Player:
-  - Name: String, required
-  - Buy in: Number, required
-  - Final stack: Number
-  - Win: Number
-  - userId: String
-
-## API endpoints (Backend routes)
+  - name: String
+  - buyin: Number
+  - buyinHistory: [Number]
+  - finalStack: Number
+  - isPlaying: Boolean
   
-- GET "/auth/signup"
-  - 401 (unauthorized) if user logged in
-  - Get signup page
+## API endpoints (Backend routes)
+
+- GET "/auth/me"
+  - 404 (Not Found) if user not logged in
+  - Get current user
 
 - POST "/auth/signup"
   - 401 (unauthorized) if user logged in
-  - 200 (OK) if new use created successfully
+  - 200 (OK) if new user created successfully
   - Body:
     - username
     - password (encrypted)
@@ -190,10 +216,6 @@ Poker cash game organizer that keeps a history of all the games a user has playe
     - user already exists (409)
   - Save new user and store session
   - Redirect to home page
-  
-- GET "/auth/login"
-  - 401 (unauthorized) if user logged in
-  - Get login page
   
 - POST "/auth/login"
   - 401 (unauthorized) if user logged in
@@ -211,67 +233,49 @@ Poker cash game organizer that keeps a history of all the games a user has playe
   - Delete user session
   - Redirect to title page
 
-- GET "/"
-  - 401 (unauthorized) if user logged in
-  - Get title page
+- GET "/cash-game/my-games"
+  - Returns user's list of games
   
-- GET "/home"
-  - 401 (unauthorized) if user not logged in
-  - Gets home page
-
-- GET "/cash-game/new"
-  - Get create game form
-
-- POST "/cash-game"
-  - Create new game
-  - Body:
-    - ListPlayers: [Objects: {Name, Buyin, FinalStack}]
-    - Start date: current date
-    - Pot: add buyins
-    - Playing: true
-
-- GET "/cash-game/:id/play"
-  - Gets the current cash game info.
-
-- POST "/cash-game/:id/end"
-  - Edits game
-  - Body:
-    - End date: current date
-    - Duration: end-start
-    - Playing: false
-  - Redirects to final stacks page
-  
-- GET "/cash-game/:id/stacks"
-  - Gets the stack page
-  
-- POST "/cash-game/:id/close"
-  - Edits cash game
-  - Body:
-    - ListPlayers: {FinalStacks}
-  - Redirects to cash game detail
-  
-- DELETE "/cash-game/:id/delete"
-  - Deletes cash game
+- GET "/cash-game/my-shared-games"
+  - Gets the user's list of games that have been shared with him
   
 - GET "/cash-game/:id"
-  - Get game detail
+  - Gets the cash game detail
   
-- GET "/profile"
-  - Gets user's profile page
-
-- GET "/profile/games"
-  - Gets games list
-
-- GET "/profile/edit"
-  - Gets edit profile page
-
-- PUT "/profile/edit"
-  - Edit user profile
-  - Body:
-    - username
-    - password
+- POST "/cash-game/create"
+  - Creates new cash game
+  
+- DELETE "/cash-game/:id"
+  - Deletes cash game
+  
+- PUT "/cash-game/delete-shared"
+  - Deletes shared game from user's list of games
+  
+- PUT "/cash-game/:id/new-owner"
+  - Accept shared game
+  - Adds game to user's game's list
+  
+- PUT "/cash-game/:id/reject-share"
+  - Reject shared game
+  
+- PUT "/cash-game/:id/new-player"
+  - Add player to currently playing game
+  
+- PUT "/cash-game/:id/end-game"
+  - End current playing game
+  
+- PUT "/cash-game/:id/player-stack/:playerId"
+  - Assign final stack to player
+  
+- PUT "/cash-game/:id/player-rebuy/:playerId"
+  - Add rebuy to player
+  
+- PUT "/cash-game/:id/share/:shareUserId"
+  - Shares game with another user
     
 ## Link
+
+Mobile version:
 
 https://gambler-app.firebaseapp.com/
 
