@@ -26,9 +26,9 @@ class Signup extends Component {
       })
       .catch( error => {
         this.setState({
-          statusError: error.response.data.error,
+          statusError: error.message,
         })
-      } )
+      })
   }
 
   handleChange = (event) => {  

@@ -93,8 +93,11 @@ class SearchShareGame extends Component {
             })
           }
         })
-        .catch((error)=>{
-          console.log(error)
+        .catch(error => {
+          this.setState({
+            isLoading: false,
+            serverError: true,
+          })
         })
     }
 

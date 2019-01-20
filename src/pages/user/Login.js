@@ -21,7 +21,7 @@ class Login extends Component {
       })
       .catch(error => {
         this.setState({
-          statusError: error.response.data.error,
+          statusError: error.message,
         })
       })
   }
