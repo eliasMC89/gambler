@@ -24,10 +24,16 @@ class Signup extends Component {
         });
         this.props.setUser(user)
       })
-      .catch( error => {
-        this.setState({
-          statusError: error.message,
-        })
+      .catch(error => {
+        if (error.response) {
+          this.setState({
+            statusError: error.response.data.error,
+          })
+        } else {
+          this.setState({
+            statusError: error.message,
+          })
+        }
       })
   }
 

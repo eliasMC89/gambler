@@ -20,9 +20,15 @@ class Login extends Component {
         this.props.setUser(responseUser);
       })
       .catch(error => {
-        this.setState({
-          statusError: error.message,
-        })
+        if (error.response) {
+          this.setState({
+            statusError: error.response.data.error,
+          })
+        } else {
+          this.setState({
+            statusError: error.message,
+          })
+        }
       })
   }
 
