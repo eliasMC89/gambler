@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import auth from '../lib/auth-service';
+
 import LoadingSpinner from '../components/LoadingSpinner';
+import NotFound from '../pages/main/NotFound';
 
 const AuthContext = React.createContext();
 
@@ -32,6 +34,7 @@ class AuthProvider extends Component {
     user: null,
     isLogged: false,
     isLoading: true,
+    serverError: false,
   }
 
   componentDidMount() {
@@ -67,11 +70,17 @@ class AuthProvider extends Component {
           user: null,
         });
       })
-      .catch(error => error.message)
+      .catch(() => {
+        this.setState({
+          serverError: true,
+        })
+      })
   }
 
   render() {
-    if (this.state.isLoading) {
+    if (this.state.serverError) {
+      return <NotFound />
+    } else if (this.state.isLoading) {
       return <LoadingSpinner />
     }
     return <div>
